@@ -1,3 +1,93 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/*!
+ * Jake McQuade (jakemc.dev)
+ * Tailwind included. All rights go to their respective owners.
+ */
+
+ @import url("https://rsms.me/inter/inter.css");
+
+ @tailwind base;
+ @tailwind components;
+ @tailwind utilities;
+ 
+ @layer base {
+   /* Base Layer */
+   * { @apply border-border; }
+ 
+   :root {
+     font-family: Inter, sans-serif;
+     font-feature-settings: "liga" 1, "calt" 1;
+
+     --background: 0, 0%, 5.88%;
+     --background-2: #1f1f1f;
+     --background-3: #171717;
+     --foreground: 210 40% 98%;
+     --card: 222.2 84% 4.9%;
+     --card-foreground: 210 40% 98%;
+     --popover: 222.2 84% 4.9%;
+     --popover-foreground: 210 40% 98%;
+     --primary: 243.4 75.36% 58.63%;
+     --primary-foreground: 222.2 47.4% 11.2%;
+     --secondary: 217.2 32.6% 17.5%;
+     --secondary-foreground: 210 40% 98%;
+     --muted: 217.2 32.6% 17.5%;
+     --muted-foreground: 215 20.2% 65.1%;
+     --accent: 217.2 32.6% 17.5%;
+     --accent-foreground: 210 40% 98%;
+     --destructive: 0 62.8% 30.6%;
+     --destructive-foreground: 210 40% 98%;
+     --outline: 0 0% 100% / 0.05;
+     --border: 217.2 32.6% 17.5%;
+     --input: 217.2 32.6% 17.5%;
+     --ring: 224.3 76.3% 48%;
+     --radius: 0.5rem;
+     --dark-blue: #001037;
+     --dark-blue-2: #000d2b;
+     --dark-blue-3: #000a23;
+   }
+
+   @supports (font-variation-settings: normal) {
+     :root { font-family: InterVariable, sans-serif; }
+   }
+ };
+ 
+ @layer base {
+   body { @apply bg-background text-foreground; }
+   
+   a {
+     transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out !important;
+     text-decoration: none !important;
+   }
+ 
+   .display-hb {
+     display: flex;
+     align-items: center;
+     position: relative;
+     white-space: nowrap;
+     font-size: 1.5rem;
+     width: 100%;
+   }
+   
+   .display-hb::after {
+     content: "";
+     display: block;
+     position: relative;
+     width: 100%;
+     height: 2px;
+     margin-left: 20px;
+     background-color: #FFFFF7;
+   }
+   
+   @media (max-width: 600px) { .display-hb::after { margin-left: 10px; } }
+   @media (max-width: 768px) { .display-hb::after { width: 100%; } }
+   @media (max-width: 1080px) { .display-hb::after { width: 200px; } }
+ }
+ 
+ .ellipsis-2 {
+   text-overflow: ellipsis;
+   overflow: hidden;
+   display: -webkit-box !important;
+   line-clamp: 2;
+   -webkit-line-clamp: 2;
+   -webkit-box-orient: vertical;
+   white-space: normal;
+ };
