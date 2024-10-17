@@ -12,7 +12,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
 
   return (
     <AnimatePresence initial={false} mode={"popLayout"}>
-      <Navbar />
+      {/* <Navbar /> */}
       <motion.main
         key={pathname}
         initial={{ opacity: 0, scale: 0.95 }}
@@ -22,7 +22,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
 	  >
         {children}
       </motion.main>
-      <Footer />
+      {/* <Footer /> */}
     </AnimatePresence>
   );
 }

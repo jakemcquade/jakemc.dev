@@ -17,9 +17,9 @@
      font-family: Inter, sans-serif;
      font-feature-settings: "liga" 1, "calt" 1;
 
-     --background: 0, 0%, 5.88%;
-     --background-2: #1f1f1f;
-     --background-3: #171717;
+     --background: 0, 0%, 0%;
+     --background-2: #0a0a0a;
+     --background-3: #0d0d0d;
      --foreground: 210 40% 98%;
      --card: 222.2 84% 4.9%;
      --card-foreground: 210 40% 98%;
