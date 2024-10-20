@@ -1,5 +1,3 @@
-import { label } from "framer-motion/client";
-
 export default {
   name: "Jake McQuade",
   description: "I'm a 16 year old high school student. I like running, skiing, and making software in my free time. I first started programming early 2019.\nToday, I know a variety of languages, frameworks, and tools. However, I specialize in software development.",
