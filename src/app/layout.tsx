@@ -4,7 +4,7 @@ import { Inter } from "next/font/google";
 import { ReactNode } from "react";
 
 import { ThemeProvider } from "~/components/theme";
-import MouseEffect from "~/components/mouse";
+// import MouseEffect from "~/components/mouse";
 import Footer from "~/components/footer";
 import config from "~/config";
 
