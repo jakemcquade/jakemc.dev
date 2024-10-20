@@ -7,7 +7,7 @@ import config from "~/config";
 import { formatDate } from "~/lib/utils";
 import BackUp from "~/components/backup";
 
-export async function generateStaticPaths() {
+export async function generateStaticParams() {
   const posts = await getBlogPosts();
   return posts.map((post) => ({ slug: post.slug }));
 }
