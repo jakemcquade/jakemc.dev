@@ -8,19 +8,13 @@ export const getBaseUrl = () => process.env.NEXT_PUBLIC_SITE ?? "http://localhos
 export const getCanonicalUrl = (...pages: string[]) => `${getBaseUrl()}/${pages.join("/")}`;
 
 export function formatDate(date: string) {
-  let currentDate = new Date().getTime();
-  if (!date.includes("T")) {
-    date = `${date}T00:00:00`;
-  }
-  let targetDate = new Date(date).getTime();
-  let timeDifference = Math.abs(currentDate - targetDate);
-  let daysAgo = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+  const currentDate = new Date().getTime();
+  if (!date.includes("T")) date = `${date}T00:00:00`;
 
-  let fullDate = new Date(date).toLocaleString("en-us", {
-    month: "long",
-    day: "numeric",
-    year: "numeric",
-  });
+  const targetDate = new Date(date).getTime();
+  const timeDifference = Math.abs(currentDate - targetDate);
+  const daysAgo = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+  const fullDate = new Date(date).toLocaleString("en-us", { month: "long", day: "numeric", year: "numeric" });
 
   if (daysAgo < 1) {
     return "Today";
