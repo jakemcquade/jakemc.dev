@@ -9,8 +9,13 @@ const config = {
   reactStrictMode: true,
   env: { NEXT_TELEMETRY_DISABLED: "1" },
   images: {
-    domains: ["raw.githubusercontent.com"],
-  }
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "raw.githubusercontent.com",
+      },
+    ],
+  },
 };
 
 export default config;

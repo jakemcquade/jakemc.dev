@@ -1,3 +1,4 @@
+import { PluginAPI } from "tailwindcss/types/config";
 import { type Config } from "tailwindcss";
 
 export default {
@@ -21,8 +22,8 @@ export default {
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
-        ["background-2"]: "var(--background-2)",
-        ["background-3"]: "var(--background-3)",
+        "background-2": "var(--background-2)",
+        "background-3": "var(--background-3)",
         foreground: "hsl(var(--foreground))",
         primary: {
           DEFAULT: "hsl(var(--primary))",
@@ -85,10 +86,10 @@ export default {
   plugins: [require("tailwindcss-animate"), require("@tailwindcss/typography"), globalColors],
 } satisfies Config;
 
-function globalColors({ addBase, theme }: { addBase: (base: { [key: string]: Object }) => void, theme: (key: string) => void }) {
+function globalColors({ addBase, theme }: PluginAPI) {
   const flattenColorPalette = require("tailwindcss/lib/util/flattenColorPalette").default;
   let allColors = flattenColorPalette(theme("colors"));
   let newVars = Object.fromEntries(Object.entries(allColors).map(([key, val]) => [`--${key}`, val]));
 
-  addBase({ ":root": newVars });
+  addBase({ ":root": newVars as { [key: string]: string } });
 };
