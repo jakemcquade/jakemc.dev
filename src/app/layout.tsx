@@ -69,7 +69,7 @@ export async function generateMetadata(): Promise<Metadata> {
 };
 
 import "~/styles/globals.css";
-export default async function RootLayout({ children }: Readonly<{ children: ReactNode }>) {
+export default function RootLayout({ children }: Readonly<{ children: ReactNode }>) {
   return (
     <html lang={"en"} data-theme={"dark"} style={{ colorScheme: "dark", scrollBehavior: "smooth" }} suppressHydrationWarning>
       <head />
