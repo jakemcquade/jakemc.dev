@@ -1,14 +1,15 @@
-import fs from "fs";
-import matter from "gray-matter";
-import path from "path";
 import rehypePrettyCode from "rehype-pretty-code";
 import rehypeStringify from "rehype-stringify";
-import remarkParse from "remark-parse";
 import remarkRehype from "remark-rehype";
+import remarkParse from "remark-parse";
 import { unified } from "unified";
+import matter from "gray-matter";
+import path from "path";
+import fs from "fs";
 
-export async function markdownToHTML(markdown: string) {
-  const p = await unified()
+export async function getPost(slug: string) {
+  const { content: rawContent, data: metadata } = matter(fs.readFileSync(path.join("posts", `${slug}.mdx`), "utf-8"));
+  const content = await unified()
     .use(remarkParse)
     .use(remarkRehype)
     .use(rehypePrettyCode, {
@@ -20,14 +21,8 @@ export async function markdownToHTML(markdown: string) {
       },
     })
     .use(rehypeStringify)
-    .process(markdown);
-
-  return p.toString();
-}
-
-export async function getPost(slug: string) {
-  const { content: rawContent, data: metadata } = matter(fs.readFileSync(path.join("posts", `${slug}.mdx`), "utf-8"));
-  const content = await markdownToHTML(rawContent);
+    .process(rawContent)
+    .toString();
 
   return { source: content, metadata, slug };
 }
