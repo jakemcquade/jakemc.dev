@@ -1,0 +1,44 @@
+---
+title: "Installing NodeJs On Linux"
+publishedAt: "2024-10-20"
+summary: "This short guide will show you how to setup NodeJS on a Linux server."
+---
+
+## Introduction
+Setting up NodeJS and PM2 on a Linux server is very straightforward. This guide will walk you through the steps to install NodeJs using NVM.
+
+## What is NVM?
+NVM (Node Version Manager) allows us to install and manage multiple versions of Node.js on the same machine. This is particularly useful if you're working on different projects that require specific versions of Node.js. It also gives a quick and easy install, and easy upgrade in the future. Instead of installing Node.js globally on your system, NVM lets you switch between versions seamlessly.
+
+## Dependencies
+Before we start, ensure you have `curl` installed. This is used to download content in command line.
+
+```sh
+sudo apt install curl -y
+```
+
+## Download NVM Installer
+Run the following command below to download the installer for the latest version of NVM.
+
+```sh
+curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash
+```
+
+## Run NVM Installer
+After installing the installer script, we now need to run the installer. Run the following command below to run the installer. 
+```sh
+source ~/.bashrc
+```
+
+## NodeJs Install
+After running the above command, NVM will be installed on your system. Now all you need to do is install NodeJs. You can replace "latest" with a certain version you wish to install.
+```sh
+nvm install latest
+```
+
+## Conclusion
+Congrats! NodeJs should now be installed on your system. You can check if the installer worked by running the commands below. If you have an issues, you can email me at <a href="mailto:hello@jakemc.dev">hello@jakemc.dev</a>.
+```sh
+node -v
+npm -v
+```
