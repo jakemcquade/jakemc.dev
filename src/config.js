@@ -6,7 +6,7 @@ export default {
   meta: {
     title: "Jake McQuade",
     logo: "/favicon.ico",
-    description: "Entrepeneur. Developer. Designer.",
+    description: "I'm a 16 year old high school student. I like running, skiing, and making software in my free time.",
     site: "https://jakemc.dev",
     siteName: "jakemc.dev",
     keywords: ["Jake McQuade", "jake mcquade", "jakemc.dev", "McQuade", "Jake M", "jakemc"],
