@@ -33,11 +33,11 @@ export async function getPost(slug: string) {
 }
 
 export function getBlogPosts() {
-  let mdxFiles = fs.readdirSync(path.join(process.cwd(), "posts")).filter((file) => path.extname(file) === ".mdx");
+  const mdxFiles = fs.readdirSync(path.join(process.cwd(), "posts")).filter((file) => path.extname(file) === ".mdx");
   return Promise.all(
     mdxFiles.map(async (file) => {
-      let slug = path.basename(file, path.extname(file));
-      let { metadata, source } = await getPost(slug);
+      const slug = path.basename(file, path.extname(file));
+      const { metadata, source } = await getPost(slug);
 
       return { metadata, slug, source };
     }),

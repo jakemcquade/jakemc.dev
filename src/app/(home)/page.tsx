@@ -46,7 +46,7 @@ export default function Home() {
                       <h3 className={"inline-flex items-center justify-center gap-2 text-lg font-semibold leading-none sm:text-sm text-black dark:text-white"}>
                         {project.name}
                         <span className={"inline-flex gap-1"}>
-                          {project.links.map((social, i) => (
+                          {project.links.map(social => (
                             <a key={social.label} href={social.href}>
                               {social.label.toLowerCase() === "github" ? <FaGithub className={"h-5 w-5 text-black dark:text-white"} /> : <FaExternalLinkAlt className={"h-5 w-5 text-black dark:text-white"} />}
                             </a>

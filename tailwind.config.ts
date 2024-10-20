@@ -88,8 +88,8 @@ export default {
 
 function globalColors({ addBase, theme }: PluginAPI) {
   const flattenColorPalette = require("tailwindcss/lib/util/flattenColorPalette").default;
-  let allColors = flattenColorPalette(theme("colors"));
-  let newVars = Object.fromEntries(Object.entries(allColors).map(([key, val]) => [`--${key}`, val]));
+  const allColors = flattenColorPalette(theme("colors"));
+  const newVars = Object.fromEntries(Object.entries(allColors).map(([key, val]) => [`--${key}`, val]));
 
   addBase({ ":root": newVars as { [key: string]: string } });
 };
