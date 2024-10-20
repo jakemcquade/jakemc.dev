@@ -1,6 +1,7 @@
 export default {
   name: "Jake McQuade",
   description: "I'm a 16 year old high school student. I like running, skiing, and making software in my free time. I first started programming early 2019.\nToday, I know a variety of languages, frameworks, and tools. However, I specialize in software development.",
+  contact: "You can contact me by either sending an email to <a href=\"mailto:hello@jakemc.dev\">hello@jakemc.dev</a>, or by any of the socials listed at the bottom of this page.",
   initialAnimationDelay: 0.04,
   meta: {
     title: "Jake McQuade",
