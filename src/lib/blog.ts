@@ -22,9 +22,8 @@ export async function getPost(slug: string) {
     })
     .use(rehypeStringify)
     .process(rawContent)
-    .toString();
 
-  return { source: content, metadata, slug };
+  return { source: content.toString(), metadata, slug };
 }
 
 export function getBlogPosts() {
