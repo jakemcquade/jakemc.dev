@@ -5,6 +5,12 @@
 await import("./src/env.js");
 
 /** @type {import("next").NextConfig} */
-const config = {};
+const config = {
+  reactStrictMode: true,
+  env: { NEXT_TELEMETRY_DISABLED: "1" },
+  images: {
+    domains: ["raw.githubusercontent.com"],
+  }
+};
 
 export default config;

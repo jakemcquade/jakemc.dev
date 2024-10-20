@@ -1,5 +1,4 @@
 import { type Config } from "tailwindcss";
-import { fontFamily } from "tailwindcss/defaultTheme";
 
 export default {
   darkMode: ["class", "[data-theme=\"dark\"]"],
@@ -13,7 +12,7 @@ export default {
       center: true,
       padding: "2rem",
       screens: {
-        "2xl": "1400px",
+        "2xl": "1400px"
       }
     },
     extend: {
@@ -83,13 +82,13 @@ export default {
       }
     },
   },
-  plugins: [ require("tailwindcss-animate"), globalColors ]
+  plugins: [require("tailwindcss-animate"), require("@tailwindcss/typography"), globalColors],
 } satisfies Config;
 
 function globalColors({ addBase, theme }: { addBase: (base: { [key: string]: Object }) => void, theme: (key: string) => void }) {
   const flattenColorPalette = require("tailwindcss/lib/util/flattenColorPalette").default;
   let allColors = flattenColorPalette(theme("colors"));
   let newVars = Object.fromEntries(Object.entries(allColors).map(([key, val]) => [`--${key}`, val]));
- 
+
   addBase({ ":root": newVars });
 };
