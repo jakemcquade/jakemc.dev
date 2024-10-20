@@ -12,7 +12,7 @@ import config from "~/config";
 const font = Inter({ subsets: ["latin"], variable: "--font-sans" });
 export const viewport: Viewport = { themeColor: "#323232" };
 
-export async function generateMetadata(): Promise<Metadata> {
+export function generateMetadata(): Metadata {
   const title = config.meta.title;
   const description = config.meta.description;
 

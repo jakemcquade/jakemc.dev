@@ -40,7 +40,7 @@ const BlurFadeText = ({
         <AnimatePresence>
           {characters.map((char, i) => (
             <motion.span
-              key={i}
+              key={char + i}
               initial="hidden"
               animate="visible"
               exit="hidden"

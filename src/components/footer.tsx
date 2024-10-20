@@ -8,10 +8,10 @@ const socialClasses = "h-5 w-5 text-gray-500 hover:text-gray-900 dark:hover:text
 export default function Footer() {
   return (
     <footer className="mx-6 my-4 py-6 flex flex-col items-center justify-center gap-2 bg-transparent text-center">
-      <p className={"text-base text-gray-500"}>Jake McQuade</p>
+      <p className={"text-base text-gray-500"}>Designed by Jake McQuade</p>
       <ul className={"mt-1 flex flex-wrap items-center justify-center space-x-3 text-sm font-medium text-gray-500 dark:text-gray-400 sm:mt-0"}>
-        {config.socials.map((social, i) => (
-            <Link key={i} className={"text-white"} aria-label={social.label} href={social.href}>
+        {config.socials.map(social => (
+            <Link key={social.label} className={"text-white"} aria-label={social.label} href={social.href}>
             {social.label.toLowerCase() === "github" ? (
               <FaGithub className={socialClasses} />
             ) : social.label.toLowerCase() === "discord" ? (

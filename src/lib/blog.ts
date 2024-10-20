@@ -32,7 +32,7 @@ export async function getPost(slug: string) {
   return { source: content, metadata, slug };
 }
 
-export async function getBlogPosts() {
+export function getBlogPosts() {
   let mdxFiles = fs.readdirSync(path.join(process.cwd(), "posts")).filter((file) => path.extname(file) === ".mdx");
   return Promise.all(
     mdxFiles.map(async (file) => {
