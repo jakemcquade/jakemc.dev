@@ -2,16 +2,15 @@
 
 import { RiCloseLargeFill, RiMenu3Fill } from "react-icons/ri";
 import React, { useEffect, useState } from "react";
+import { useTheme } from "next-themes";
 import NextImage from "next/image";
 import Link from "next/link";
 
 import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger } from "./navigation-menu";
-import css from "~/styles/navbar.module.css";
+import { LuMoon, LuSun } from "react-icons/lu";
 import { Button } from "./button";
 import { cn } from "../lib/utils";
 import config from "~/config";
-import { useTheme } from "next-themes";
-import { LuMoon, LuSun } from "react-icons/lu";
 
 /**
  * A navigation bar component with a hamburger menu for mobile and a
@@ -27,14 +26,7 @@ export default function Navbar({ logo = "/logo.png" }) {
     const navbar = document.querySelector("#navbar");
     const scrollClass = "py-2.5 ms-6 me-6 !bg-background dark:!bg-background-3 shadow-md light:border light:[border:1px_solid_rgba(255,255,255,.1)]";
 
-    window.addEventListener(
-      "scroll",
-      () => {
-        if (window.scrollY >= 50) navbar?.classList.add(...scrollClass.split(" "));
-        else navbar?.classList.remove(...scrollClass.split(" "));
-      },
-      { passive: true },
-    );
+    window.addEventListener("scroll", () => window.scrollY >= 50 ? navbar?.classList.add(...scrollClass.split(" ")) : navbar?.classList.remove(...scrollClass.split(" ")), { passive: true });
   });
 
   return (
