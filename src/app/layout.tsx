@@ -6,15 +6,13 @@ import { ReactNode } from "react";
 import { ThemeProvider } from "~/components/theme";
 // import MouseEffect from "~/components/mouse";
 import Footer from "~/components/footer";
+import { cn } from "~/lib/utils";
 import config from "~/config";
 
-const font = Inter({
-  subsets: ["latin"],
-  variable: "--font-sans",
-});
-
+const font = Inter({ subsets: ["latin"], variable: "--font-sans" });
 export const viewport: Viewport = { themeColor: "#323232" };
-export const generateMetadata = async (): Promise<Metadata> => {
+
+export async function generateMetadata(): Promise<Metadata> {
   const title = config.meta.title;
   const description = config.meta.description;
 
@@ -75,7 +73,7 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
   return (
     <html lang={"en"} data-theme={"dark"} style={{ colorScheme: "dark", scrollBehavior: "smooth" }} suppressHydrationWarning>
       <head />
-      <body className={"mx-auto min-h-screen max-w-2xl bg-background font-sans antialiased"}>
+      <body className={cn("mx-auto min-h-screen max-w-2xl bg-background font-sans antialiased", font.className)}>
         <ThemeProvider attribute={"data-theme"} defaultTheme={"dark"} disableTransitionOnChange>
           {children}
           <Footer />
