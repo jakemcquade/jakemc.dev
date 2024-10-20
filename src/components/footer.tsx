@@ -1,18 +1,33 @@
-import Image from "next/image";
 import Link from "next/link";
 
-import { FaTwitter, FaYoutube, FaGithub, FaDiscord, FaSpotify } from "react-icons/fa";
+import { FaTwitter, FaYoutube, FaGithub, FaDiscord, FaSpotify, FaInstagram } from "react-icons/fa";
 import config from "~/config";
 
+const socialClasses = "h-5 w-5 text-gray-500 hover:text-gray-900 dark:hover:text-white dark:text-gray-400 transition-colors";
+
 export default function Footer() {
-    return <footer className="bg-white rounded-lg shadow my-4 mx-6 dark:bg-background-3">
-        <div className="w-full mx-auto max-w-screen-xl p-4 md:flex md:items-center md:justify-between">
-            <span className="text-sm text-gray-500 sm:text-center dark:text-gray-400">© Copyright {new Date().getFullYear()} {config.meta.siteName}. All rights reserved.</span>
-            <ul className="flex flex-wrap items-center mt-1 space-x-3 text-sm font-medium text-gray-500 dark:text-gray-400 sm:mt-0">
-                <Link aria-label={"GitHub"} href={"https://github.com/jakemcquade"}><FaGithub className="w-5 h-5 hover:fill-gray-400 transition-config.theme.status.colors" /></Link>
-                <Link aria-label={"Discord"} href={"https://discord.com/users/1292290091108274219"}><FaDiscord className="w-5 h-5 hover:fill-blue-600 transition-config.theme.status.colors" /></Link>
-                <Link aria-label={"YouTube"} href={"https://www.youtube.com/@JakeMcQuade"}><FaYoutube className="w-5 h-5 hover:fill-red-400 transition-config.theme.status.colors" /></Link>
-            </ul>
-        </div>
+  return (
+    <footer className="mx-6 my-4 py-6 flex flex-col items-center justify-center gap-2 bg-transparent text-center">
+      <p className={"text-base text-gray-500"}>Jake McQuade</p>
+      <ul className={"mt-1 flex flex-wrap items-center justify-center space-x-3 text-sm font-medium text-gray-500 dark:text-gray-400 sm:mt-0"}>
+        {config.socials.map((social, i) => (
+            <Link key={i} className={"text-white"} aria-label={social.label} href={social.href}>
+            {social.label.toLowerCase() === "github" ? (
+              <FaGithub className={socialClasses} />
+            ) : social.label.toLowerCase() === "discord" ? (
+              <FaDiscord className={socialClasses} />
+            ) : social.label.toLowerCase() === "youtube" ? (
+              <FaYoutube className={socialClasses} />
+            ) : social.label.toLowerCase() === "twitter" ? (
+              <FaTwitter className={socialClasses} />
+            ) : social.label.toLowerCase() === "instagram" ? (
+              <FaInstagram className={socialClasses} />
+            ) : social.label.toLowerCase() === "spotify" ? (
+              <FaSpotify className={socialClasses} />
+            ) : null}
+            </Link>
+        ))}
+      </ul>
     </footer>
+  );
 }
