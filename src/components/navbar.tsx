@@ -26,7 +26,7 @@ export default function Navbar({ logo = "/logo.png" }) {
     const navbar = document.querySelector("#navbar");
     const scrollClass = "py-2.5 ms-6 me-6 !bg-background dark:!bg-background-3 shadow-md light:border light:[border:1px_solid_rgba(255,255,255,.1)]";
 
-    window.addEventListener("scroll", () => window.scrollY >= 50 ? navbar?.classList.add(...scrollClass.split(" ")) : navbar?.classList.remove(...scrollClass.split(" ")), { passive: true });
+    window.addEventListener("scroll", () => (window.scrollY >= 50 ? navbar?.classList.add(...scrollClass.split(" ")) : navbar?.classList.remove(...scrollClass.split(" "))), { passive: true });
   });
 
   return (
@@ -61,8 +61,13 @@ export default function Navbar({ logo = "/logo.png" }) {
       </div>
 
       {/* Items (Mobile) */}
-      <div className={`sm:hidden ${opened !== true ? "hidden" : ""}`} id="mobile-menu">
-        <div className="flex space-y-1 px-2 pb-3 pt-2">{navItems(true)}</div>
+      <div className={`sm:hidden z-10 ${opened !== true ? "hidden" : ""}`} id="mobile-menu">
+        <div className="flex flex-col space-y-1 px-2 pb-3 pt-2">
+          {navItems(true)}
+          <div className={"px-2.5 items-center sm:static sm:block sm:pr-0"}>
+            <ModeToggle />
+          </div>
+        </div>
       </div>
     </nav>
   );
