@@ -13,8 +13,7 @@ const font = Inter({ subsets: ["latin"], variable: "--font-sans" });
 export const viewport: Viewport = { themeColor: "#323232" };
 
 export function generateMetadata(): Metadata {
-  const title = config.meta.title;
-  const description = config.meta.description;
+  const { title, description, keywords } = config.meta;
 
   return {
     metadataBase: new URL("https://jakemc.dev"),
@@ -22,8 +21,7 @@ export function generateMetadata(): Metadata {
       default: title,
       template: `%s | ${title}`,
     },
-    description,
-    keywords: config.meta.keywords,
+    description, keywords,
     manifest: "/manifest.json",
     creator: "Jake McQuade (jakemc.dev)",
     publisher: "Jake McQuade (jakemc.dev)",

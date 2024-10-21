@@ -15,12 +15,13 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata | undefined> {
   let post = await getPost(params.slug);
 
-  let { title, publishedAt: publishedTime, summary: description, image } = post.metadata;
+  let { title, publishedAt: publishedTime, summary: description, image, tags: keywords } = post.metadata;
   let ogImage = image ? `${config.meta.site}${image}` : `${config.meta.site}/og?title=${title}`;
 
   return {
     title,
     description,
+    keywords: config.meta.keywords.concat(keywords),
     openGraph: {
       type: "article",
       title,
@@ -68,7 +69,7 @@ export default async function Blog({ params }: { params: { slug: string } }) {
             image: post.metadata.image ? `${config.meta.site}${post.metadata.image}` : `${config.meta.site}/og?title=${post.metadata.title}`,
             url: `${config.meta.site}/blog/${post.slug}`,
             author: { "@type": "Person", name: config.name },
-          }),
+          })
         }}
       />
     </section>
