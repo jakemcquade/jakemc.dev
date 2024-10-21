@@ -43,7 +43,7 @@ export default function Navbar({ logo = "/logo.png" }) {
           <div className={"flex flex-row"}>
             {/* Hamburger */}
             <div className="flex h-full w-fit items-center justify-end sm:hidden">
-              <Button variant="outline" className="relative inline-flex items-center justify-center rounded-md border-0 bg-background-2 p-2 outline-none hover:bg-gray-800" onClick={() => setOpened(!opened)} aria-controls="mobile-menu">
+              <Button aria-label={"menu"} variant="outline" className="relative inline-flex items-center justify-center rounded-md border-0 bg-background-2 p-2 outline-none hover:bg-gray-800" onClick={() => setOpened(!opened)} aria-controls="mobile-menu">
                 {opened === true ? <RiCloseLargeFill className={"block h-6 w-6"} /> : <RiMenu3Fill className={"block h-6 w-6"} />}
               </Button>
             </div>
@@ -77,7 +77,7 @@ export function ModeToggle() {
   const { theme, setTheme } = useTheme();
 
   return (
-    <Button variant={"ghost"} size={"icon"} onClick={() => setTheme(theme === "dark" ? "light" : "dark")}>
+    <Button aria-label={"toggle theme"} variant={"ghost"} size={"icon"} onClick={() => setTheme(theme === "dark" ? "light" : "dark")}>
       <LuSun className="absolute h-4 w-4 scale-0 transition-all dark:scale-100" />
       <LuMoon className="h-4 w-4 scale-100 transition-all dark:scale-0" />
       <span className="sr-only">Toggle theme</span>
