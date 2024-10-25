@@ -10,7 +10,7 @@ export default function Home() {
     <main className="relative min-h-[100dvh] items-center justify-center bg-transparent px-8 pt-8">
       {/* Hero */}
       <div className={"w-full"}>
-        <BlurFadeText className={"my-2.5 text-4xl font-bold text-black dark:text-white"} delay={config.initialAnimationDelay} yOffset={8} animateByCharacter text={"Hey, I'm Jake 👋"} />
+        <BlurFadeText className={"my-2.5 text-4xl font-bold text-black dark:text-white"} delay={config.initialAnimationDelay} yOffset={8} animateByCharacter text={"Hey, I'm Jake"} />
         {config.description.split("\n").map((line, i) => (
           <BlurFadeText key={line} className={"my-2.5 text-base font-normal text-black dark:text-white"} delay={config.initialAnimationDelay * 2 + i * 0.05} text={line} />
         ))}
@@ -32,12 +32,12 @@ export default function Home() {
           {config.projects.map((project, i) => (
             <BlurFade key={project.name} delay={config.initialAnimationDelay * 6 + i * 0.05}>
               <div className={"flex rounded-lg bg-transparent"}>
-                <div className={"flex-none"}>
+                <div className={"flex-none flex items-center justify-center"}>
                   <Avatar className={"h-12 w-12"}>
-                    <AvatarImage src={project.image} />
-                    <AvatarFallback className={"text-lg font-medium"} style={{ color: "rgba(240,240,255,0.5)" }}>
-                      {project.name?.at(0)?.toUpperCase()}
-                    </AvatarFallback>
+                  <AvatarImage src={project.image} className={"bg-black dark:bg-white"} />
+                  <AvatarFallback className={"text-lg font-medium"} style={{ color: "rgba(240,240,255,0.5)" }}>
+                    {project.name?.at(0)?.toUpperCase()}
+                  </AvatarFallback>
                   </Avatar>
                 </div>
                 <div className={"ml-4 flex-grow flex-col items-center"}>
