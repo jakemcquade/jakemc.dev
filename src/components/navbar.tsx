@@ -22,7 +22,7 @@ import config from "~/config";
  */
 export default function Navbar({ logo = "/logo.png" }) {
   const [opened, setOpened] = useState(false);
-  const [hide, setHidden] = useState(false);
+  const [hide, setHidden] = useState(true);
   useEffect(() => {
     const navbar = document.querySelector("#navbar");
     const scrollClass = "py-2.5 ms-6 me-6 !bg-background dark:!bg-background-3 shadow-md light:border light:[border:1px_solid_rgba(255,255,255,.1)]";
