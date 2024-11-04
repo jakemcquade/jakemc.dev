@@ -1,4 +1,5 @@
-import NextImage from "next/image";
+"use client";
+
 import Link from "next/link";
 import { Button } from "~/components/button";
 
@@ -13,11 +14,11 @@ export default function Render() {
         <p>Sorry, we couldn't find what you were looking for.</p>
         <div className={"flex flex-row gap-2 justify-center"}>
           <Link href={"/"} passHref>
-            <Button className={""}>Home</Button>
+            <Button>Home</Button>
           </Link>
-          <Link href={"/"} passHref>
-            <Button className={""}>Home</Button>
-          </Link>
+          <Button onClick={() => window.history.back()}>
+              Go Back
+          </Button>
         </div>
       </div>
     </div>
