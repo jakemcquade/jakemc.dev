@@ -1,6 +1,6 @@
 export default {
   name: "Jake McQuade",
-  description: "I'm a 16 year old high school student. I like running, skiing, and making software in my free time. I first started programming early 2019.\nI know a variety of languages, frameworks, and tools. However, I specialize in software development.",
+  description: "I'm a 16 year old high school student. I like running, skiing, and making software in my free time. I first started programming early 2019.\nToday, I know a variety of languages, frameworks, and tools. However, I specialize in software development.",
   contact: "You can contact me by either sending an email to <a href=\"mailto:hello@jakemc.dev\">hello@jakemc.dev</a>, or by any of the socials listed at the bottom of this page.",
   initialAnimationDelay: 0.04,
   meta: {
@@ -11,16 +11,6 @@ export default {
     siteName: "jakemc.dev",
     keywords: ["Jake McQuade", "jake mcquade", "jakemc.dev", "McQuade", "Jake M", "jakemc"],
   },
-  navItems: [
-    {
-      label: "Home",
-      href: "/",
-    },
-    {
-      label: "Blog",
-      href: "/blog",
-    },
-  ],
   socials: [
     {
       label: "GitHub",
@@ -37,6 +27,31 @@ export default {
     {
       label: "Discord",
       href: "https://discord.com/users/1292290091108274219",
+    }
+  ],
+  navItems: [
+    {
+      label: "Home",
+      href: "/",
+    },
+    {
+      label: "Blog",
+      href: "/blog",
+    },
+    {
+      label: "Projects",
+      href: "/projects",
+      children: [{
+        label: "FastAutoClicker",
+        subLabel: "An open sourced, lightweight, and fast auto clicker designed with a sleek modern interface.",
+        href: "/autoclicker",
+      }, {
+        label: "Time",
+        href: "/time",
+      }, {
+        label: "Movies Recommender",
+        href: "/movies",
+      }]
     }
   ],
   projects: [
