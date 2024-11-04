@@ -22,6 +22,7 @@ import config from "~/config";
  */
 export default function Navbar({ logo = "/logo.png" }) {
   const [opened, setOpened] = useState(false);
+  const [hide, setHidden] = useState(false);
   useEffect(() => {
     const navbar = document.querySelector("#navbar");
     const scrollClass = "py-2.5 ms-6 me-6 !bg-background dark:!bg-background-3 shadow-md light:border light:[border:1px_solid_rgba(255,255,255,.1)]";
@@ -43,7 +44,7 @@ export default function Navbar({ logo = "/logo.png" }) {
           <div className={"flex flex-row"}>
             {/* Hamburger */}
             <div className="flex h-full w-fit items-center justify-end sm:hidden">
-              <Button aria-label={"menu"} variant="outline" className="relative inline-flex items-center justify-center rounded-md border-0 p-2 outline-none hover:bg-accent transition-all" onClick={() => setOpened(!opened)} aria-controls="mobile-menu">
+              <Button aria-label={"menu"} variant="outline" className="relative inline-flex items-center justify-center rounded-md border-0 p-2 outline-none hover:bg-accent transition-all" onClick={() => { setOpened(!opened); setTimeout(() => setHidden(opened), 300) }} aria-controls="mobile-menu">
                 {opened === true ? <RiCloseLargeFill className={"block h-6 w-6"} /> : <RiMenu3Fill className={"block h-6 w-6"} />}
               </Button>
             </div>
@@ -62,10 +63,10 @@ export default function Navbar({ logo = "/logo.png" }) {
 
       {/* Items (Mobile) */}
       <div className={cn("sm:hidden z-10 transition-[max-height,opacity] duration-300 ease-in-out", opened ? "max-h-screen opacity-100" : "max-h-0 opacity-0")} id="mobile-menu">
-        <div className={cn("flex flex-col space-y-1 px-2 pb-3 pt-2", opened !== true ? "" : "")}>
+        <div className={cn("flex flex-col space-y-1 px-2 pb-3 pt-2", hide ? "hidden" : "")}>
           {navItems(true)}
           <div className={"px-2.5 items-center sm:static sm:block sm:pr-0"}>
-            <ModeToggle />
+        <ModeToggle />
           </div>
         </div>
       </div>
