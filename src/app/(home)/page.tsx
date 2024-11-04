@@ -10,7 +10,7 @@ export default function Home() {
     <main className="relative min-h-[100dvh] items-center justify-center bg-transparent px-8 pt-8">
       {/* Hero */}
       <div className={"w-full"}>
-        <BlurFadeText className={"my-2.5 text-4xl font-bold text-black dark:text-white"} delay={config.initialAnimationDelay} yOffset={8} animateByCharacter text={"Hey, I'm Jake"} />
+        <BlurFadeText className={"my-2.5 text-4xl font-bold text-black dark:text-white"} delay={config.initialAnimationDelay} yOffset={8} animateByCharacter text={"Hello, I'm Jake"} />
         {config.description.split("\n").map((line, i) => (
           <BlurFadeText key={line} className={"my-2.5 text-base font-normal text-black dark:text-white"} delay={config.initialAnimationDelay * 2 + i * 0.05} text={line} />
         ))}

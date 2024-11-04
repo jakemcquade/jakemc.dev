@@ -11,16 +11,6 @@ export default {
     siteName: "jakemc.dev",
     keywords: ["Jake McQuade", "jake mcquade", "jakemc.dev", "McQuade", "Jake M", "jakemc"],
   },
-  navItems: [
-    {
-      label: "Home",
-      href: "/",
-    },
-    {
-      label: "Blog",
-      href: "/blog",
-    },
-  ],
   socials: [
     {
       label: "GitHub",
@@ -37,6 +27,31 @@ export default {
     {
       label: "Discord",
       href: "https://discord.com/users/1292290091108274219",
+    }
+  ],
+  navItems: [
+    {
+      label: "Home",
+      href: "/",
+    },
+    {
+      label: "Blog",
+      href: "/blog",
+    },
+    {
+      label: "Projects",
+      href: "/projects",
+      children: [{
+        label: "FastAutoClicker",
+        subLabel: "An open sourced, lightweight, and fast auto clicker designed with a sleek modern interface.",
+        href: "/autoclicker",
+      }, {
+        label: "Time",
+        href: "/time",
+      }, {
+        label: "Movies Recommender",
+        href: "/movies",
+      }]
     }
   ],
   projects: [
