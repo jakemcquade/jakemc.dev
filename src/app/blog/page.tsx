@@ -14,7 +14,7 @@ export default async function Blog() {
 
   return (
     <main className="relative min-h-[100dvh] items-center justify-center bg-transparent px-8 pt-8">
-      <BlurFadeText className={"my-4 mt-2.5 text-4xl font-bold"} delay={config.initialAnimationDelay} yOffset={8} text="Blog" />
+      <BlurFadeText className={"my-4 mt-2.5 text-4xl font-bold"} delay={config.initialAnimationDelay} animateByCharacter yOffset={8} text="Blog" />
       <div className={"flex flex-col space-y-4"}>
         {posts
           .sort((a, b) => (new Date(a.metadata.publishedAt) > new Date(b.metadata.publishedAt) ? -1 : 1))

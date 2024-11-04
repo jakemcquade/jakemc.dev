@@ -40,8 +40,8 @@ export default function Render() {
 
     useEffect(() => { calculate(); }, [selectedDay, endDate]);
     return (
-        <div className="max-w-md mx-auto mt-10 mb-36 p-6 bg-background rounded-lg shadow-md">
-            <BlurFadeText className={"text-2xl font-bold mb-4 text-gray-900 dark:text-gray-100"} delay={config.initialAnimationDelay} yOffset={8} animateByCharacter text={"Date Calculator"} />
+        <div className="max-w-md min-h-[65dvh] mx-auto px-8 pt-8 mt-10 bg-background rounded-lg shadow-md items-center">
+            <BlurFadeText className={"text-3xl font-bold my-4 mt-2.5 text-gray-900 dark:text-gray-100"} delay={config.initialAnimationDelay} yOffset={8} animateByCharacter text={"Date Calculator"} />
             <BlurFade delay={config.initialAnimationDelay * 2}>
                 <Popover>
                     <PopoverTrigger asChild>
