@@ -3,17 +3,18 @@ import type { Metadata } from "next";
 import { Suspense } from "react";
 
 import { getBlogPosts, getPost } from "../../../lib/blog";
-import config from "~/config";
 import { formatDate } from "~/lib/utils";
 import BackUp from "~/components/backup";
+import config from "~/config";
 
 export async function generateStaticParams() {
   const posts = await getBlogPosts();
   return posts.map((post) => ({ slug: post.slug }));
 }
 
-export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata | undefined> {
-  let post = await getPost(params.slug);
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata | undefined> {
+  const { slug } = await params;
+  let post = await getPost(slug);
 
   let { title, publishedAt: publishedTime, summary: description, image, tags: keywords } = post.metadata;
   let ogImage = image ? `${config.meta.site}${image}` : `${config.meta.site}/og?title=${title}`;
