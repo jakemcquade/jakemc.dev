@@ -16,26 +16,26 @@ export default function Render() {
     const [count, setCount] = useState<number | null>(null);
 
     function calculate() {
-            if (endDate) {
-                const days = eachDayOfInterval({ start: new Date(), end: endDate });
-                const dayCount = days.filter(day => {
-                    switch (selectedDay) {
-                        case "Monday": return day.getDay() === 1;
-                        case "Tuesday": return day.getDay() === 2;
-                        case "Wednesday": return day.getDay() === 3;
-                        case "Thursday": return day.getDay() === 4;
-                        case "Friday": return day.getDay() === 5;
-                        case "Saturday": return day.getDay() === 6;
-                        case "Sunday": return day.getDay() === 0;
-                        default: return false;
-                    }
-                }).length;
-                setCount(dayCount);
+        if (!endDate) return;
+
+        const days = eachDayOfInterval({ start: new Date(), end: endDate });
+        const dayCount = days.filter(day => {
+            switch (selectedDay) {
+                case "Monday": return day.getDay() === 1;
+                case "Tuesday": return day.getDay() === 2;
+                case "Wednesday": return day.getDay() === 3;
+                case "Thursday": return day.getDay() === 4;
+                case "Friday": return day.getDay() === 5;
+                case "Saturday": return day.getDay() === 6;
+                case "Sunday": return day.getDay() === 0;
+                default: return false;
             }
+        }).length;
+
+        setCount(dayCount);
     };
 
     useEffect(() => { calculate(); }, [selectedDay, endDate]);
-
     return (
         <div className="max-w-md mx-auto mt-10 mb-36 p-6 bg-background rounded-lg shadow-md">
             <h1 className="text-2xl font-bold mb-4 text-gray-900 dark:text-gray-100">Date Calculator</h1>
