@@ -5,10 +5,13 @@ import { LuCalendar } from "react-icons/lu";
 import { useEffect, useState } from "react";
 
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "~/components/select";
-import { Popover, PopoverContent, PopoverTrigger } from "~/components/popover"
+import { Popover, PopoverContent, PopoverTrigger } from "~/components/popover";
+import BlurFadeText from "~/components/effects/blur-fade-text";
+import BlurFade from "~/components/effects/blur-fade";
 import { Calendar } from "~/components/calendar";
 import { Button } from "~/components/button";
 import { cn } from "~/lib/utils";
+import config from "~/config";
 
 export default function Render() {
     const [endDate, setEndDate] = useState<Date | undefined>(undefined);
@@ -38,19 +41,21 @@ export default function Render() {
     useEffect(() => { calculate(); }, [selectedDay, endDate]);
     return (
         <div className="max-w-md mx-auto mt-10 mb-36 p-6 bg-background rounded-lg shadow-md">
-            <h1 className="text-2xl font-bold mb-4 text-gray-900 dark:text-gray-100">Date Calculator</h1>
-            <Popover>
-                <PopoverTrigger asChild>
-                    <Button variant={"outline"} className={cn("w-full pl-3 text-left font-normal", !endDate && "text-muted-foreground")}>
-                        {endDate ? format(endDate, "PPP") : <span>Pick a date</span>}
-                        <LuCalendar className="ml-auto h-4 w-4 opacity-50" />
-                    </Button>
-                </PopoverTrigger>
-                <PopoverContent className="w-auto p-0 mt-2" align="start">
-                    <Calendar mode="single" selected={endDate} onSelect={setEndDate} disabled={(date) => date < new Date() || date < new Date("1900-01-01")} initialFocus />
-                </PopoverContent>
-            </Popover>
-            <div className="mt-4">
+            <BlurFadeText className={"text-2xl font-bold mb-4 text-gray-900 dark:text-gray-100"} delay={config.initialAnimationDelay} yOffset={8} animateByCharacter text={"Date Calculator"} />
+            <BlurFade delay={config.initialAnimationDelay * 2}>
+                <Popover>
+                    <PopoverTrigger asChild>
+                        <Button variant={"outline"} className={cn("w-full pl-3 text-left font-normal", !endDate && "text-muted-foreground")}>
+                            {endDate ? format(endDate, "PPP") : <span>Pick a date</span>}
+                            <LuCalendar className="ml-auto h-4 w-4 opacity-50" />
+                        </Button>
+                    </PopoverTrigger>
+                    <PopoverContent className="w-auto p-0 mt-2" align="start">
+                        <Calendar mode="single" selected={endDate} onSelect={setEndDate} disabled={(date) => date < new Date() || date < new Date("1900-01-01")} initialFocus />
+                    </PopoverContent>
+                </Popover>
+            </BlurFade>
+            <BlurFade className={"mt-4"} delay={config.initialAnimationDelay * 3}>
                 <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Select a day</label>
                 <select className="flex h-10 w-full items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" value={selectedDay} onChange={(e) => setSelectedDay(e.target.value)}>
                     <option value="Sunday">Sunday</option>
@@ -61,10 +66,12 @@ export default function Render() {
                     <option value="Friday">Friday</option>
                     <option value="Saturday">Saturday</option>
                 </select>
-            </div>
-            <Button variant={"default"} onClick={calculate} className="mt-4 w-full inline-flex justify-center py-2 px-4 shadow-sm text-sm font-medium rounded-md">
-                Calculate
-            </Button>
+            </BlurFade>
+            <BlurFade delay={config.initialAnimationDelay * 4}>
+                <Button variant={"default"} onClick={calculate} className="mt-4 w-full inline-flex justify-center py-2 px-4 shadow-sm text-sm font-medium rounded-md">
+                    Calculate
+                </Button>
+            </BlurFade>
             {count !== null && (
                 <p className="mt-4 text-lg text-gray-900 dark:text-gray-100">
                     There are <span className="font-bold">{count}</span> {selectedDay}s until <span className="font-bold">{format(endDate!, "MMMM do, yyyy")}</span>
