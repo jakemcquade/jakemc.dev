@@ -43,7 +43,7 @@ export default function Navbar({ logo = "/logo.png" }) {
           <div className={"flex flex-row"}>
             {/* Hamburger */}
             <div className="flex h-full w-fit items-center justify-end sm:hidden">
-              <Button aria-label={"menu"} variant="outline" className="relative inline-flex items-center justify-center rounded-md border-0 bg-background-2 p-2 outline-none hover:bg-gray-800" onClick={() => setOpened(!opened)} aria-controls="mobile-menu">
+              <Button aria-label={"menu"} variant="outline" className="relative inline-flex items-center justify-center rounded-md border-0 p-2 outline-none hover:bg-accent transition-all" onClick={() => setOpened(!opened)} aria-controls="mobile-menu">
                 {opened === true ? <RiCloseLargeFill className={"block h-6 w-6"} /> : <RiMenu3Fill className={"block h-6 w-6"} />}
               </Button>
             </div>
@@ -85,46 +85,34 @@ export function ModeToggle() {
   );
 }
 
-const ListItem = React.forwardRef<React.ElementRef<"a">, React.ComponentPropsWithoutRef<"a">>(({ className, title, children, ...props }, ref) => {
-  return (
-    <li>
-      <NavigationMenuLink asChild>
-        <a ref={ref} className={cn("block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground", className)} {...props}>
-          <div className="text-sm font-medium leading-none">{title}</div>
-          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">{children}</p>
-        </a>
-      </NavigationMenuLink>
-    </li>
-  );
-});
-ListItem.displayName = "ListItem";
-
 export function navItems(isMobile: boolean) {
   return (
     <NavigationMenu className={"w-full"}>
       <NavigationMenuList className={cn("flex", isMobile === true ? "flex-col" : "flex-row")}>
-        {config.navItems.map((item: { label: string; href: string; children?: [{ label: string; subLabel: string; href: string }] }) =>
-          item.children ? (
-            <NavigationMenuItem key={item.label}>
-              <NavigationMenuTrigger>{item.label}</NavigationMenuTrigger>
+        {config.navItems.map(item => (
+          <NavigationMenuItem key={item.label}>
+          {item.children ? (<>
+              <NavigationMenuTrigger className={"bg-transparent w-max items-center justify-center rounded-md px-4 py-2 font-sans text-base font-medium text-black transition-colors focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50 dark:text-white"}>
+                {item.label}
+              </NavigationMenuTrigger>
               <NavigationMenuContent>
                 <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
                   {item.children.map((component) => (
-                    <ListItem className={"w-full"} key={component.label} title={component.label} href={component.href}>
-                      {component.subLabel}
-                    </ListItem>
+                    <li key={component.label}>
+                        <Link href={component.href} className={"block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent- w-full"} title={component.label}>
+                          <div className="text-sm font-medium leading-none">{component.label}</div>
+                          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">{component.subLabel}</p>
+                        </Link>
+                    </li>
                   ))}
                 </ul>
               </NavigationMenuContent>
-            </NavigationMenuItem>
-          ) : (
-            <NavigationMenuItem key={item.label} className={"w-full"}>
+            </>) : (
               <Link href={item.href} passHref>
                 <span className={"inline-flex h-10 w-max items-center justify-center rounded-md px-4 py-2 font-sans text-base font-medium text-black transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50 dark:text-white"}>{item.label}</span>
               </Link>
-            </NavigationMenuItem>
-          ),
-        )}
+          )}
+        </NavigationMenuItem>))}
       </NavigationMenuList>
     </NavigationMenu>
   );
