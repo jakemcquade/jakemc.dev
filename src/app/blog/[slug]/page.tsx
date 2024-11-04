@@ -7,12 +7,13 @@ import { formatDate } from "~/lib/utils";
 import BackUp from "~/components/backup";
 import config from "~/config";
 
+export type PageProps = Promise<{ slug: string }>;
 export async function generateStaticParams() {
   const posts = await getBlogPosts();
   return posts.map((post) => ({ slug: post.slug }));
 }
 
-export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata | undefined> {
+export async function generateMetadata({ params }: { params: PageProps }): Promise<Metadata | undefined> {
   const { slug } = await params;
   let post = await getPost(slug);
 
@@ -40,8 +41,9 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   };
 }
 
-export default async function Blog({ params }: { params: { slug: string } }) {
-  let post = await getPost(params.slug);
+export default async function Blog({ params }: { params: PageProps }) {
+  const { slug } = await params;
+  let post = await getPost(slug);
   if (!post) notFound();
 
   return (
