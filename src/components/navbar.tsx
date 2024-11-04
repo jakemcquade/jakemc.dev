@@ -61,8 +61,8 @@ export default function Navbar({ logo = "/logo.png" }) {
       </div>
 
       {/* Items (Mobile) */}
-      <div className={`sm:hidden z-10 ${opened !== true ? "hidden" : ""}`} id="mobile-menu">
-        <div className="flex flex-col space-y-1 px-2 pb-3 pt-2">
+      <div className={cn("sm:hidden z-10 transition-[max-height,opacity] duration-300 ease-in-out", opened ? "max-h-screen opacity-100" : "max-h-0 opacity-0")} id="mobile-menu">
+        <div className={cn("flex flex-col space-y-1 px-2 pb-3 pt-2", opened !== true ? "" : "")}>
           {navItems(true)}
           <div className={"px-2.5 items-center sm:static sm:block sm:pr-0"}>
             <ModeToggle />
@@ -77,7 +77,7 @@ export function ModeToggle() {
   const { theme, setTheme } = useTheme();
 
   return (
-    <Button aria-label={"toggle theme"} variant={"ghost"} size={"icon"} onClick={() => setTheme(theme === "dark" ? "light" : "dark")}>
+    <Button aria-label={"toggle theme"} variant={"ghost"} size={"icon"} className={"relative"} onClick={() => setTheme(theme === "dark" ? "light" : "dark")}>
       <LuSun className="absolute h-4 w-4 scale-0 transition-all dark:scale-100" />
       <LuMoon className="h-4 w-4 scale-100 transition-all dark:scale-0" />
       <span className="sr-only">Toggle theme</span>
@@ -88,18 +88,18 @@ export function ModeToggle() {
 export function navItems(isMobile: boolean) {
   return (
     <NavigationMenu className={"w-full"}>
-      <NavigationMenuList className={cn("flex", isMobile === true ? "flex-col" : "flex-row")}>
+      <NavigationMenuList className={cn("flex", isMobile ? "flex-col gap-1" : "flex-row")}>
         {config.navItems.map(item => (
-          <NavigationMenuItem key={item.label}>
+          <NavigationMenuItem key={item.label} className={isMobile ? "w-full" : ""}>
           {item.children ? (<>
-              <NavigationMenuTrigger className={"bg-transparent w-max items-center justify-center rounded-md px-4 py-2 font-sans text-base font-medium text-black transition-colors focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50 dark:text-white"}>
+              <NavigationMenuTrigger className={cn("bg-transparent items-center justify-center rounded-md px-4 py-2 font-sans text-base font-medium text-black transition-colors focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50 dark:text-white", isMobile ? "w-full justify-start" : "w-max justify-center")}>
                 {item.label}
               </NavigationMenuTrigger>
               <NavigationMenuContent>
                 <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
                   {item.children.map((component) => (
                     <li key={component.label}>
-                        <Link href={component.href} className={"block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent- w-full"} title={component.label}>
+                        <Link href={component.href} className={"block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none hover:no-underline transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent- w-full"} title={component.label}>
                           <div className="text-sm font-medium leading-none">{component.label}</div>
                           <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">{component.subLabel}</p>
                         </Link>
@@ -109,7 +109,7 @@ export function navItems(isMobile: boolean) {
               </NavigationMenuContent>
             </>) : (
               <Link href={item.href} passHref>
-                <span className={"inline-flex h-10 w-max items-center justify-center rounded-md px-4 py-2 font-sans text-base font-medium text-black transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50 dark:text-white"}>{item.label}</span>
+                <span className={cn("inline-flex h-10 items-center rounded-md px-4 py-2 font-sans text-base font-medium text-black transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50 dark:text-white", isMobile ? "w-full justify-start" : "w-max justify-center")}>{item.label}</span>
               </Link>
           )}
         </NavigationMenuItem>))}
