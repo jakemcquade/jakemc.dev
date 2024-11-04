@@ -3,141 +3,216 @@
  * Tailwind included. All rights go to their respective owners.
  */
 
- @tailwind base;
- @tailwind components;
- @tailwind utilities;
- 
- @layer base {
-   /* Base Layer */
-   * { @apply border-border; }
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-   :root {
+@layer base {
+
+  /* Base Layer */
+  * {
+    @apply border-border;
+  }
+
+  :root {
     font-family: Inter, sans-serif;
     font-feature-settings: "liga" 1, "calt" 1;
-   }
+  }
 
-   :root[data-theme="dark"] {
-     --background: 210 11.1% 3.53%;
-     --background-2: #08090a;
-     --background-3: #0d0d0d;
-     --foreground: 210 40% 98%;
-     --card: 222.2 84% 4.9%;
-     --card-foreground: 210 40% 98%;
-     --popover: 222.2 84% 4.9%;
-     --popover-foreground: 210 40% 98%;
-     --primary: 243.4 75.36% 58.63%;
-     --primary-foreground: 222.2 47.4% 11.2%;
-     --secondary: 217.2 32.6% 17.5%;
-     --secondary-foreground: 210 40% 98%;
-     --muted: 217.2 32.6% 17.5%;
-     --muted-foreground: 215 20.2% 65.1%;
-     --accent: 200 0% 20%;
-     --accent-foreground: 210 40% 98%;
-     --destructive: 0 62.8% 30.6%;
-     --destructive-foreground: 210 40% 98%;
-     --outline: 0 0% 100% / 0.05;
-     --border: 217.2 32.6% 17.5%;
-     --input: 217.2 32.6% 17.5%;
-     --ring: 224.3 76.3% 48%;
-     --radius: 0.5rem;
-   }
-
-   :root[data-theme="light"] {
-    --background: 0 0% 100%;
-    --background-2: #999999;
-    --background-3: #666666;
-    --foreground: 210 11.1% 3.53%;
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-    --primary: 243.4 75.36% 58.63%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-    --accent: 200 0% 20%;
-    --accent-foreground: 210 40% 98%;
+  :root[data-theme="dark"] {
+    --background: 210 11.1% 3.53%;
+    --background-2: #08090a;
+    --background-3: #0d0d0d;
+    --foreground: 0 0% 98%;
+    --card: 240 10% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 240 5.9% 10%;
+    --secondary: 240 3.7% 15.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
+    --accent: 240 3.7% 15.9%;
+    --accent-foreground: 0 0% 98%;
     --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-    --outline: 0 0% 100% / 0.05;
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 224.3 76.3% 48%;
+    --destructive-foreground: 0 85.7% 97.3%;
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 240 4.9% 83.9%;
+    --chart-1: 220 70% 50%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 240 4.9% 83.9%;
     --radius: 0.5rem;
   }
 
-  :root[data-theme="dark"] a { color: #7eabff; }
-  :root[data-theme="light"] a { color: #3079ff; }
+  :root[data-theme="light"] {
+    --background: 0 0% 100%;
+    --background-2: #999999;
+    --background-3: #666666;
+    --foreground: 240 10% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
+    --primary: 240 5.9% 10%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 240 4.8% 95.9%;
+    --secondary-foreground: 240 5.9% 10%;
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 240 3.8% 46.1%;
+    --accent: 240 4.8% 95.9%;
+    --accent-foreground: 240 5.9% 10%;
+    --destructive: 0 72.22% 50.59%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 5.9% 90%;
+    --input: 240 5.9% 90%;
+    --ring: 240 5% 64.9%;
+    --radius: 0.5rem;
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 240 5% 64.9%;
+  }
 
-  @supports (font-variation-settings: normal) { :root { font-family: InterVariable, sans-serif; } }
- }
- 
- @layer base {
-   body {
+  :root[data-theme="dark"] a {
+    color: #7eabff;
+  }
+
+  :root[data-theme="light"] a {
+    color: #3079ff;
+  }
+
+  @supports (font-variation-settings: normal) {
+    :root {
+      font-family: InterVariable, sans-serif;
+    }
+  }
+}
+
+@layer base {
+  body {
     @apply bg-background text-foreground;
     /* cursor: none; */
-   }
+  }
 
-   /* body[data-scroll-locked] {
+  /* body[data-scroll-locked] {
     margin: 0px !important;
     padding: 0px !important;
     margin-right: 0px !important;
    } */
 
-   body .cursor { pointer-events: none; }
-   body .cursor__ball circle { fill: #f7f8fa; }
-   body .cursor__ball {
+  body .cursor {
+    pointer-events: none;
+  }
+
+  body .cursor__ball circle {
+    fill: #f7f8fa;
+  }
+
+  body .cursor__ball {
     position: fixed;
     top: 0;
     left: 0;
     mix-blend-mode: difference;
     z-index: 1000;
   }
-   
-   a {
-     transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out !important;
-     text-decoration: none;
-   }
 
-   a:hover { text-decoration: underline; }
- };
+  a {
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out !important;
+    text-decoration: none;
+  }
 
- h3 code { @apply !text-lg md:!text-xl; }
- pre { @apply !px-0 rounded-lg overflow-x-auto py-4; }
- pre [data-line] { @apply px-4; }
- code { @apply text-sm md:text-base !leading-loose; }
- pre > code { counter-reset: line; }
+  a:hover {
+    text-decoration: underline;
+  }
+}
 
- code[data-theme*=" "], code[data-theme*=" "] span { color: var(--shiki-light); background-color: var(--shiki-light-bg); }
- code[data-line-numbers-max-digits="2"] > [data-line]::before { width: 2rem; }
- code[data-line-numbers-max-digits="3"] > [data-line]::before { width: 3rem; }
+h3 code {
+  @apply !text-lg md:!text-xl;
+}
+
+pre {
+  @apply !px-0 rounded-lg overflow-x-auto py-4;
+}
+
+pre [data-line] {
+  @apply px-4;
+}
+
+code {
+  @apply text-sm md:text-base !leading-loose;
+}
+
+pre > code {
+  counter-reset: line;
+}
+
+code[data-theme*=" "],
+code[data-theme*=" "] span {
+  color: var(--shiki-light);
+  background-color: var(--shiki-light-bg);
+}
+
+code[data-line-numbers-max-digits="2"]>[data-line]::before {
+  width: 2rem;
+}
+
+code[data-line-numbers-max-digits="3"]>[data-line]::before {
+  width: 3rem;
+}
 
 
 @media (prefers-color-scheme: dark) {
- code[data-theme*=" "],
-   code[data-theme*=" "] span {
-       color: var(--shiki-dark);
-       background-color: var(--shiki-dark-bg);
-   }
+
+  code[data-theme*=" "],
+  code[data-theme*=" "] span {
+    color: var(--shiki-dark);
+    background-color: var(--shiki-dark-bg);
+  }
 }
 
-code { counter-reset: line; }
-code[data-line-numbers] { counter-reset: line; }
+code {
+  counter-reset: line;
+}
+
+code[data-line-numbers] {
+  counter-reset: line;
+}
+
 code[data-line-numbers]>[data-line]::before {
-   counter-increment: line;
-   content: counter(line);
-   @apply inline-block w-4 mr-4 text-right text-gray-500;
+  counter-increment: line;
+  content: counter(line);
+  @apply inline-block w-4 mr-4 text-right text-gray-500;
 }
 
 code>[data-line]::before {
-   counter-increment: line;
-   content: counter(line);
+  counter-increment: line;
+  content: counter(line);
 
-   display: inline-block;
-   width: 1rem;
-   margin-right: 2rem;
-   text-align: right;
-   color: gray;
+  display: inline-block;
+  width: 1rem;
+  margin-right: 2rem;
+  text-align: right;
+  color: gray;
 }
