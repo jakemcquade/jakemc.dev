@@ -3,6 +3,7 @@
 import { differenceInDays, eachDayOfInterval, format } from "date-fns";
 import { LuCalendar } from "react-icons/lu";
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "~/components/select";
 import { Popover, PopoverContent, PopoverTrigger } from "~/components/popover";
@@ -14,9 +15,20 @@ import { cn } from "~/lib/utils";
 import config from "~/config";
 
 export default function Render() {
+    const router = useRouter();
+
     const [endDate, setEndDate] = useState<Date | undefined>(undefined);
     const [selectedDay, setSelectedDay] = useState<string>("Friday");
     const [count, setCount] = useState<number | null>(null);
+
+    useEffect(() => {
+        const url = new URL(window.location.href);
+        const endDateParam = url.searchParams.get("endDate");
+        const selectedDayParam = url.searchParams.get("selectedDay");
+
+        if (endDateParam) setEndDate(new Date(endDateParam));
+        if (selectedDayParam) setSelectedDay(selectedDayParam);
+    }, []);
 
     function calculate() {
         if (!endDate) return;
@@ -38,7 +50,16 @@ export default function Render() {
         setCount(dayCount);
     };
 
-    useEffect(() => { calculate(); }, [selectedDay, endDate]);
+    useEffect(() => {
+        calculate();
+        if (endDate) {
+            const url = new URL(window.location.href);
+            url.searchParams.set("endDate", endDate.toISOString());
+            url.searchParams.set("selectedDay", selectedDay);
+            router.push(url.toString());
+        }
+    }, [selectedDay, endDate]);
+
     return (
         <div className="max-w-md min-h-[65dvh] mx-auto px-8 pt-8 mt-10 bg-background rounded-lg shadow-md items-center">
             <BlurFadeText className={"text-3xl font-bold my-4 mt-2.5 text-gray-900 dark:text-gray-100"} delay={config.initialAnimationDelay} yOffset={8} animateByCharacter text={"Date Calculator"} />
