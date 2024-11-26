@@ -1,12 +1,9 @@
 import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 
-export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs));
-}
 export const getBaseUrl = () => process.env.NEXT_PUBLIC_SITE ?? "http://localhost:3000";
 export const getCanonicalUrl = (...pages: string[]) => `${getBaseUrl()}/${pages.join("/")}`;
-
+export const cn = (...inputs: ClassValue[]) => twMerge(clsx(inputs));
 export function formatDate(date: string) {
   const currentDate = new Date().getTime();
   if (!date.includes("T")) date = `${date}T00:00:00`;
