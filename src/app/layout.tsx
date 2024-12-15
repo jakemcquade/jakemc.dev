@@ -3,6 +3,7 @@ import { Analytics } from "@vercel/analytics/react";
 import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import { ReactNode } from "react";
+import Script from "next/script";
 
 import { ThemeProvider } from "~/components/theme";
 // import MouseEffect from "~/components/mouse";
@@ -79,6 +80,7 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
         </ThemeProvider>
         <SpeedInsights />
         <Analytics />
+        <Script defer data-domain="disping.xyz" src="https://analytics.jakemc.dev/js/script.js" />
       </body>
     </html>
   );
