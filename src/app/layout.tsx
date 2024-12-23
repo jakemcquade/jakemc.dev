@@ -80,7 +80,7 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
         </ThemeProvider>
         <SpeedInsights />
         <Analytics />
-        <Script defer data-domain="disping.xyz" src="https://analytics.jakemc.dev/js/script.file-downloads.hash.outbound-links.pageview-props.revenue.tagged-events.js" />
+        <Script defer data-domain="jakemc.dev" src="https://analytics.jakemc.dev/js/script.file-downloads.hash.outbound-links.pageview-props.revenue.tagged-events.js" />
       </body>
     </html>
   );
