@@ -9,7 +9,7 @@ export default {
     description: "I'm a 16 year old high school student. I like running, skiing, and making software in my free time.",
     site: "https://jakemc.dev",
     siteName: "jakemc.dev",
-    keywords: ["Jake McQuade", "jake mcquade", "jakemc.dev", "McQuade", "Jake M", "jakemc", "jakemc_dev"],
+    keywords: ["Jake McQuade", "jake mcquade", "jakemc.dev", "McQuade", "Jake M", "jakemc", "jakemc_dev", "time", "time calculator", "speechify", "speechify image", "fastautoclicker", "auto clicker", "fast auto clicker", "open source", "open source software", "open source projects", "open source tools", "open source utilities", "open source applications", "open source programs", "open source apps"],
   },
   socials: [
     {
@@ -46,7 +46,7 @@ export default {
         subLabel: "An easy-to-use time calculator.",
         href: "/time",
       }, {
-        label: "Speechify",
+        label: "Speechify Image",
         subLabel: "Easily add a speech bubble to any image.",
         href: "/speechify",
       }, {
@@ -64,7 +64,7 @@ export default {
       links: [
         {
           label: "GitHub",
-          href: "https://github.com/jakemcquade/fastautoclicker/tree/main",
+          href: "https://github.com/jakemcquade/fastautoclicker",
         },
       ],
     },

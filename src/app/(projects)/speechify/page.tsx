@@ -42,30 +42,30 @@ export default function ChatBubblePage() {
                 delay={config.initialAnimationDelay * 0.05}
             />
             <div className={"flex-1 h-full p-8"}>
-                <div ref={resultRef} className={"w-fit h-full"}>
-                    <div {...getRootProps()} className={"flex items-center justify-center w-full h-full relative"}>
-                        <input {...getInputProps()} />
-                        {image ? (<>
-                            <img
-                                src={image}
-                                alt={"Image"}
-                                className={"max-w-full max-h-full"}
-                            />
-                            <img
-                                src={"/bubbles/tail_large_right.webp"}
-                                alt={"Speech Bubble"}
-                                className={"absolute w-full h-full object-cover"}
-                            />
-                        </>) : (
-                            <div className={"flex border-[3px] border-dashed border-gray-300 dark:border-slate-700 rounded-md p-8 bg-gray-600/10"}>
-                                <p className={"w-full text-black dark:text-white opacity-100"}>Drag and drop some files here, or click to select files</p>
-                            </div>
-                        )}
+                <BlurFade delay={config.initialAnimationDelay * 2}>
+                    <div ref={resultRef} className={"w-fit h-full"}>
+                        <div {...getRootProps()} className={"flex items-center justify-center w-full h-full relative"}>
+                            <input {...getInputProps()} />
+                            {image ? (<>
+                                <img
+                                    src={image}
+                                    alt={"Image"}
+                                    className={"max-w-full max-h-full"}
+                                />
+                                <img
+                                    src={"/bubbles/tail_large_right.webp"}
+                                    alt={"Speech Bubble"}
+                                    className={"absolute w-full h-full object-cover"}
+                                />
+                            </>) : (
+                                <div className={"flex border-[3px] border-dashed border-gray-300 dark:border-slate-700 rounded-md p-8 bg-gray-600/10"}>
+                                    <p className={"w-full text-black dark:text-white opacity-100"}>Drag and drop some files here, or click to select files</p>
+                                </div>
+                            )}
+                        </div>
                     </div>
-                </div>
-            </div>
-            <div className={cn("flex w-full justify-end", image ? "block" : "hidden")}>
-                <BlurFade delay={config.initialAnimationDelay * 3}>
+                </BlurFade>
+                <div className={cn("flex w-full justify-end", image ? "block" : "hidden")}>
                     <Button
                         variant={"default"}
                         className={"mt-4 w-full inline-flex justify-center py-2 px-4 shadow-sm text-sm font-medium rounded-md"}
@@ -79,7 +79,7 @@ export default function ChatBubblePage() {
                         <LuDownload className={"w-6 h-6"} />
                         Save
                     </Button>
-                </BlurFade>
+                </div>
             </div>
         </div>
     );
