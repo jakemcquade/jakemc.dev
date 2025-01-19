@@ -4,7 +4,6 @@ import { useCallback, useRef, useState } from "react";
 import { useDropzone } from "react-dropzone";
 import html2canvas from "html2canvas";
 import { saveAs } from "file-saver";
-import Image from "next/image";
 
 import BlurFadeText from "~/components/effects/blur-fade-text";
 import BlurFade from "~/components/effects/blur-fade";
@@ -13,7 +12,7 @@ import { LuDownload } from "react-icons/lu";
 import { cn } from "~/lib/utils";
 import config from "~/config";
 
-export default function ChatBubblePage() {
+export default function Render() {
     const [image, setImage] = useState<string | null>(null);
     const resultRef = useRef<HTMLDivElement>(null);
 
@@ -55,7 +54,7 @@ export default function ChatBubblePage() {
                                 <img
                                     src={"/bubbles/tail_large_right.webp"}
                                     alt={"Speech Bubble"}
-                                    className={"absolute w-full h-full object-cover"}
+                                    className={"absolute w-full h-fit object-cover top-0"}
                                 />
                             </>) : (
                                 <div className={"flex border-[3px] border-dashed border-gray-300 dark:border-slate-700 rounded-md p-8 bg-gray-600/10"}>
