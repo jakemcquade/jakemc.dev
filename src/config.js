@@ -9,7 +9,7 @@ export default {
     description: "I'm a 16 year old high school student. I like running, skiing, and making software in my free time.",
     site: "https://jakemc.dev",
     siteName: "jakemc.dev",
-    keywords: ["Jake McQuade", "jake mcquade", "jakemc.dev", "McQuade", "Jake M", "jakemc"],
+    keywords: ["Jake McQuade", "jake mcquade", "jakemc.dev", "McQuade", "Jake M", "jakemc", "jakemc_dev"],
   },
   socials: [
     {
@@ -42,15 +42,17 @@ export default {
       label: "Projects",
       href: "/projects",
       children: [{
-        label: "FastAutoClicker",
-        subLabel: "An open sourced, lightweight, and fast auto clicker designed with a sleek modern interface.",
-        href: "/autoclicker",
-      }, {
         label: "Time",
+        subLabel: "An easy-to-use time calculator.",
         href: "/time",
       }, {
-        label: "Movies Recommender",
-        href: "/movies",
+        label: "Speechify",
+        subLabel: "Easily add a speech bubble to any image.",
+        href: "/speechify",
+      }, {
+        label: "FastAutoClicker",
+        subLabel: "An open sourced, lightweight, and fast auto clicker designed with a sleek modern interface.",
+        href: "https://github.com/jakemcquade/fastautoclicker",
       }]
     }
   ],
