@@ -4,7 +4,7 @@ import config from "~/config";
 
 export const metadata: Metadata = {
     title: "Time Calculator",
-    description: `An easy-to-use time calculator. ${config.description}`,
+    description: `An easy-to-use time calculator. ${config.meta.description}`,
     keywords: config.meta.keywords.concat(["time", "time calculator", "calculator", "time converter", "time difference", "time difference calculator", "time difference converter"]),
 };
 
