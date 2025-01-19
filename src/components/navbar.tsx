@@ -7,7 +7,7 @@ import NextImage from "next/image";
 import Link from "next/link";
 
 import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger } from "./navigation-menu";
-import { LuMoon, LuSun } from "react-icons/lu";
+import { LuExternalLink, LuMoon, LuSun } from "react-icons/lu";
 import { Button } from "./button";
 import { cn } from "../lib/utils";
 import config from "~/config";
@@ -101,7 +101,10 @@ export function navItems(isMobile: boolean) {
                   {item.children.map((component) => (
                     <li key={component.label}>
                         <Link href={component.href} className={"block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none hover:no-underline transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent- w-full"} title={component.label}>
-                          <div className="text-sm font-medium leading-none">{component.label}</div>
+                          <div className={"flex items-center gap-1 text-sm font-medium leading-none"}>
+                            {component.label}
+                            {component.href.startsWith("http") ? <LuExternalLink className={"inline-block align-middle w-3 h-3"} /> : null}
+                          </div>
                           <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">{component.subLabel}</p>
                         </Link>
                     </li>
