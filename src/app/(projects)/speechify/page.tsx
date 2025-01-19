@@ -9,6 +9,7 @@ import Image from "next/image";
 import BlurFadeText from "~/components/effects/blur-fade-text";
 import BlurFade from "~/components/effects/blur-fade";
 import { Button } from "~/components/button";
+import { LuDownload } from "react-icons/lu";
 import { cn } from "~/lib/utils";
 import config from "~/config";
 
@@ -55,9 +56,11 @@ export default function ChatBubblePage() {
                                 alt={"Speech Bubble"}
                                 className={"absolute w-full h-full object-cover"}
                             />
-                        </>) : (<div className={"flex border-[3px] border-dashed border-gray-300 dark:border-slate-700 rounded-md p-8 bg-gray-600/10"}>
-                            <p className={"w-full text-black dark:text-white opacity-100"}>Drag and drop some files here, or click to select files</p>
-                        </div>)}
+                        </>) : (
+                            <div className={"flex border-[3px] border-dashed border-gray-300 dark:border-slate-700 rounded-md p-8 bg-gray-600/10"}>
+                                <p className={"w-full text-black dark:text-white opacity-100"}>Drag and drop some files here, or click to select files</p>
+                            </div>
+                        )}
                     </div>
                 </div>
             </div>
@@ -69,10 +72,11 @@ export default function ChatBubblePage() {
                         onClick={() => {
                             if (resultRef.current) {
                                 html2canvas(resultRef.current).then(canvas => {
-                                    canvas.toBlob(blob => blob && saveAs(blob, "speechify_jakemc_wdev_image.png"));
+                                    canvas.toBlob(blob => blob && saveAs(blob, "speechify_jakemc_dev_image.png"));
                                 });
                             }
                         }}>
+                        <LuDownload className={"w-6 h-6"} />
                         Save
                     </Button>
                 </BlurFade>
