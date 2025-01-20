@@ -2,6 +2,7 @@
   "name": "jakemc.dev",
   "version": "1.0.0",
   "author": "Jake McQuade (jakemc.dev)",
+  "license": "AGPL-3.0-only",
   "type": "module",
   "private": true,
   "scripts": {
