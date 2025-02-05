@@ -13,6 +13,10 @@ const config = {
       {
         protocol: "https",
         hostname: "raw.githubusercontent.com",
+      },
+      {
+        protocol: "https",
+        hostname: "disping.xyz"
       }
     ],
   },
