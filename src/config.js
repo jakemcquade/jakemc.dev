@@ -1,12 +1,12 @@
 export default {
   name: "Jake McQuade",
-  description: "I'm a 16 year old high school student. I like running, skiing, and making software in my free time. I first started programming early 2019.\nI know a variety of languages, frameworks, and tools. However, I specialize in software development.",
-  contact: "You can contact me by either sending an email to <a href=\"mailto:hello@jakemc.dev\">hello@jakemc.dev</a>, or by any of the socials listed at the bottom of this page.",
+  description: "this is just a site for the shit I make lol",
+  contact: "if you're tryna contact me email me at any of the socials listed at the bottom of this page.",
   initialAnimationDelay: 0.04,
   meta: {
     title: "Jake McQuade",
     logo: "/favicon.ico",
-    description: "I'm a 16 year old high school student. I like running, skiing, and making software in my free time.",
+    description: "",
     site: "https://jakemc.dev",
     siteName: "jakemc.dev",
     keywords: ["Jake McQuade", "jake mcquade", "jakemc.dev", "McQuade", "Jake M", "jakemc", "jakemc_dev", "fastautoclicker", "auto clicker", "fast auto clicker", "open source", "open source software", "open source projects", "open source tools", "open source utilities", "open source applications", "open source programs", "open source apps"],
@@ -49,6 +49,10 @@ export default {
         label: "Speechify Image",
         subLabel: "Easily add a speech bubble to any image.",
         href: "/speechify",
+      }, {
+        label: "Weather",
+        subLabel: "A super simple weather app.",
+        href: "/weather"
       }, {
         label: "FastAutoClicker",
         subLabel: "An open sourced, lightweight, and fast auto clicker designed with a sleek modern interface.",
