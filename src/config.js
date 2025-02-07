@@ -1,7 +1,7 @@
 export default {
   name: "Jake McQuade",
-  description: "this is just a site for the shit I make lol",
-  contact: "if you're tryna contact me email me at any of the socials listed at the bottom of this page.",
+  description: "This is just a site for the stuff I make.",
+  contact: "You can contact me at any of the socials listed at the bottom of this page.",
   initialAnimationDelay: 0.04,
   meta: {
     title: "Jake McQuade",
@@ -63,7 +63,7 @@ export default {
   projects: [
     {
       name: "Disping",
-      description: "Notify your community on YouTube and Twitch— fast and effortlessly. That/’s Disping.",
+      description: "Notify your community on YouTube and Twitch— fast and effortlessly. That's Disping.",
       image: "https://disping.xyz/logo.png",
       links: []
     },
