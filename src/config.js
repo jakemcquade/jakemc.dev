@@ -1,6 +1,6 @@
 export default {
   name: "Jake McQuade",
-  description: "This is just a site for the stuff I make.",
+  description: "This is just a site to showcase the projects I've make over the years.",
   contact: "You can contact me at any of the socials listed at the bottom of this page.",
   initialAnimationDelay: 0.04,
   meta: {
@@ -42,6 +42,14 @@ export default {
       label: "Projects",
       href: "/projects",
       children: [{
+        label: "Disping",
+        subLabel: "Notify your community on YouTube, Twitch, Trovo, Bluesky, Reddit & more—fast and easy with Disping!",
+        href: "https://github.com/jakemcquade/fastautoclicker",
+      }, {
+        label: "FastAutoClicker",
+        subLabel: "An open sourced, lightweight, and fast auto clicker designed with a sleek modern interface.",
+        href: "https://github.com/jakemcquade/fastautoclicker",
+      }, {
         label: "Time",
         subLabel: "An easy-to-use time calculator.",
         href: "/time",
@@ -53,19 +61,20 @@ export default {
         label: "Weather",
         subLabel: "A super simple weather app.",
         href: "/weather"
-      }, {
-        label: "FastAutoClicker",
-        subLabel: "An open sourced, lightweight, and fast auto clicker designed with a sleek modern interface.",
-        href: "https://github.com/jakemcquade/fastautoclicker",
       }]
     }
   ],
   projects: [
     {
       name: "Disping",
-      description: "Notify your community on YouTube and Twitch— fast and effortlessly. That's Disping.",
+      description: "Notify your community on YouTube, Twitch, Trovo, Bluesky, Reddit & more—fast and easy with Disping!",
       image: "https://disping.xyz/logo.png",
-      links: []
+      links: [
+        {
+          label: "Website",
+          href: "https://disping.xyz",
+        }
+      ]
     },
     {
       name: "FastAutoClicker",
