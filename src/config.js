@@ -44,7 +44,7 @@ export default {
       children: [{
         label: "Disping",
         subLabel: "Notify your community on YouTube, Twitch, Trovo, Bluesky, Reddit & more—fast and easy with Disping!",
-        href: "https://github.com/jakemcquade/fastautoclicker",
+        href: "https://disping.xyz?utm_source=jakemc.dev&utm_medium=link",
       }, {
         label: "FastAutoClicker",
         subLabel: "An open sourced, lightweight, and fast auto clicker designed with a sleek modern interface.",
@@ -72,7 +72,7 @@ export default {
       links: [
         {
           label: "Website",
-          href: "https://disping.xyz",
+          href: "https://disping.xyz?utm_source=jakemc.dev&utm_medium=link",
         }
       ]
     },
