@@ -1,16 +1,18 @@
 import { Avatar, AvatarFallback, AvatarImage } from "~/components/avatar";
 import BlurFadeText from "~/components/effects/blur-fade-text";
-import { FaExternalLinkAlt, FaGithub } from "react-icons/fa";
 import BlurFade from "~/components/effects/blur-fade";
 import BackUp from "../../components/backup";
 import config from "~/config";
+
+import { FiExternalLink } from "react-icons/fi";
+import { FaGithub } from "react-icons/fa";
 
 export default function Home() {
   return (
     <main className="relative min-h-[100dvh] items-center justify-center bg-transparent px-8 pt-8">
       {/* Hero */}
       <div className={"w-full"}>
-        <BlurFadeText className={"my-2.5 text-4xl font-bold text-black dark:text-white"} delay={config.initialAnimationDelay} yOffset={8} animateByCharacter text={"What up"} />
+        <BlurFadeText className={"my-2.5 text-4xl font-bold text-black dark:text-white"} delay={config.initialAnimationDelay} yOffset={8} animateByCharacter text={"Hey, I'm Jake McQuade"} />
         {config.description.split("\n").map((line, i) => (
           <BlurFadeText key={line} className={"my-2.5 text-base font-normal text-black dark:text-white"} delay={config.initialAnimationDelay * 2 + i * 0.05} text={line} />
         ))}
@@ -43,12 +45,12 @@ export default function Home() {
                 <div className={"ml-4 flex-grow flex-col items-center"}>
                   <div className={"flex flex-col"}>
                     <div className={"flex items-center justify-between gap-x-2 text-base"}>
-                      <h3 className={"inline-flex items-center justify-center gap-2 text-lg font-semibold leading-none sm:text-sm text-black dark:text-white"}>
+                      <h3 className={"inline-flex items-center justify-center gap-1 text-lg font-semibold leading-none sm:text-sm text-black dark:text-white"}>
                         {project.name}
                         <span className={"inline-flex gap-1"}>
                           {project.links.map(social => (
-                            <a key={social.label} href={social.href}>
-                              {social.label.toLowerCase() === "github" ? <FaGithub className={"h-5 w-5 text-black dark:text-white"} /> : <FaExternalLinkAlt className={"h-5 w-5 text-black dark:text-white"} />}
+                            <a key={social.label} href={social.href} target={"_blank"} rel={"noopener noreferrer"}>
+                              {social.label.toLowerCase() === "github" ? <FaGithub className={"h-4 w-4 text-black dark:text-white"} /> : <FiExternalLink className={"h-4 w-4 text-black dark:text-white"} />}
                             </a>
                           ))}
                         </span>
