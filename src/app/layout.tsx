@@ -81,6 +81,9 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
         <SpeedInsights />
         <Analytics />
         <Script defer data-domain="jakemc.dev" src="https://analytics.jakemc.dev/js/script.js" />
+        <Script id={"plausible-init"} strategy={"afterInteractive"}>
+          {`window.plausible = window.plausible || function() { (window.plausible.q = window.plausible.q || []).push(arguments) }`}
+        </Script>
       </body>
     </html>
   );
