@@ -1,6 +1,6 @@
 export default {
   name: "Jake McQuade",
-  description: "This is just a site to showcase the projects I've make over the years.",
+  description: "This is just a site to showcase the projects I've made over the years.",
   contact: "You can contact me at any of the socials listed at the bottom of this page.",
   initialAnimationDelay: 0.04,
   meta: {
@@ -57,10 +57,6 @@ export default {
         label: "Speechify Image",
         subLabel: "Easily add a speech bubble to any image.",
         href: "/speechify",
-      }, {
-        label: "Weather",
-        subLabel: "A super simple weather app.",
-        href: "/weather"
       }]
     }
   ],
