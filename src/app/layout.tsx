@@ -1,5 +1,3 @@
-import { SpeedInsights } from '@vercel/speed-insights/next';
-import { Analytics } from "@vercel/analytics/react";
 import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import { ReactNode } from "react";
@@ -78,8 +76,7 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
           {children}
           <Footer />
         </ThemeProvider>
-        <SpeedInsights />
-        <Analytics />
+
         <Script defer data-domain="jakemc.dev" src="https://analytics.jakemc.dev/js/script.js" />
       </body>
     </html>
