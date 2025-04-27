@@ -1,7 +1,7 @@
-import { Avatar, AvatarFallback, AvatarImage } from "~/components/avatar";
 import BlurFadeText from "~/components/effects/blur-fade-text";
 import BlurFade from "~/components/effects/blur-fade";
 import BackUp from "../../components/backup";
+import Avatar from "~/components/avatar";
 import config from "~/config";
 
 import { FiExternalLink } from "react-icons/fi";
@@ -35,12 +35,7 @@ export default function Home() {
             <BlurFade key={project.name} delay={config.initialAnimationDelay * 6 + i * 0.05}>
               <div className={"flex rounded-lg bg-transparent"}>
                 <div className={"flex-none flex items-center justify-center"}>
-                  <Avatar className={"h-12 w-12"}>
-                  <AvatarImage src={project.image} className={"bg-black dark:bg-white"} />
-                  <AvatarFallback className={"text-lg font-medium"} style={{ color: "rgba(240,240,255,0.5)" }}>
-                    {project.name?.at(0)?.toUpperCase()}
-                  </AvatarFallback>
-                  </Avatar>
+                  <Avatar src={project.image} className={"h-12 w-12 bg-black dark:bg-white"} fallback={project.name?.at(0)?.toUpperCase()} alt={project?.name} />
                 </div>
                 <div className={"ml-4 flex-grow flex-col items-center"}>
                   <div className={"flex flex-col"}>

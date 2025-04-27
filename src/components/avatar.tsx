@@ -1,53 +1,31 @@
 "use client";
 
-import * as React from "react";
 import NextImage from "next/image";
-import * as AvatarPrimitive from "@radix-ui/react-avatar";
+import * as React from "react";
 
 import { cn } from "~/lib/utils";
 
-const Avatar = React.forwardRef<
-  React.ElementRef<typeof AvatarPrimitive.Root>,
-  React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Root>
->(({ className, ...props }, ref) => (
-  <AvatarPrimitive.Root
-    ref={ref}
-    className={cn("relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full", className)}
-    {...props}
-  />
-));
-Avatar.displayName = AvatarPrimitive.Root.displayName;
+interface AvatarProps extends React.HTMLAttributes<HTMLDivElement> {
+	src?: string;
+	alt?: string;
+	fallback?: React.ReactNode;
+}
 
-const AvatarImage = React.forwardRef<
-  React.ElementRef<typeof AvatarPrimitive.Image>,
-  React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Image>
->(({ className, src, alt, ...props }, ref) => (
-  <AvatarPrimitive.Image
-    ref={ref}
-    className={cn("aspect-square h-full w-full", className)}
-    src={src}
-    asChild
-    {...props}
-  >
-    <NextImage src={src as string} alt={alt ?? "Image"} loading={"lazy"} fill />
-  </AvatarPrimitive.Image>
-));
-AvatarImage.displayName = AvatarPrimitive.Image.displayName;
+const Avatar = React.forwardRef<HTMLDivElement, AvatarProps>(({ src, alt, fallback, className, ...props }, ref) => {
+	const [imgError, setImgError] = React.useState(false);
 
-const AvatarFallback = React.forwardRef<
-  React.ElementRef<typeof AvatarPrimitive.Fallback>,
-  React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Fallback>
->(({ className, ...props }, ref) => (
-  <AvatarPrimitive.Fallback
-    ref={ref}
-    style={{ color: "rgba(240,240,255,0.5)" }}
-    className={cn(
-      "flex h-full w-full items-center justify-center rounded-full bg-muted text-lg font-medium",
-      className,
-    )}
-    {...props}
-  />
-));
-AvatarFallback.displayName = AvatarPrimitive.Fallback.displayName;
+	return (
+		<div ref={ref} className={cn("relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full", className)} {...props}>
+			{src && !src.includes("null") && !src.includes("undefined") && !imgError ? (
+				<NextImage src={src} alt={alt ?? ""} className={"aspect-square"} fill={true} onError={() => setImgError(true)} />
+			) : (
+				<div className={cn("bg-muted flex h-full w-full items-center justify-center rounded-full text-lg font-medium", className)} style={{ color: "rgba(240,240,255,0.5)" }}>
+					{fallback}
+				</div>
+			)}
+		</div>
+	);
+});
 
-export { Avatar, AvatarImage, AvatarFallback };
+Avatar.displayName = "Avatar";
+export default Avatar;
