@@ -1,7 +1,5 @@
-import { PluginAPI } from "tailwindcss/types/config";
-import { type Config } from "tailwindcss";
-
-export default {
+/** @type {import("tailwindcss").Config} */
+module.exports = {
   darkMode: ["class", "[data-theme=\"dark\"]"],
   content: [
     "./src/components/**/*.{ts,tsx}",
@@ -91,13 +89,5 @@ export default {
       },
     },
   },
-  plugins: [require("tailwindcss-animate"), require("@tailwindcss/typography"), globalColors],
-} satisfies Config;
-
-function globalColors({ addBase, theme }: PluginAPI) {
-  const flattenColorPalette = require("tailwindcss/lib/util/flattenColorPalette").default;
-  const allColors = flattenColorPalette(theme("colors"));
-  const newVars = Object.fromEntries(Object.entries(allColors).map(([key, val]) => [`--${key}`, val]));
-
-  addBase({ ":root": newVars as { [key: string]: string } });
+  plugins: [require("tailwindcss-animate")],
 };
