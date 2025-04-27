@@ -89,7 +89,7 @@ export default function Render() {
                 </select>
             </BlurFade>
             <BlurFade delay={config.initialAnimationDelay * 4}>
-                <Button variant={"default"} onClick={calculate} className="mt-4 w-full inline-flex justify-center py-2 px-4 shadow-sm text-sm font-medium rounded-md">
+                <Button onClick={calculate} className="mt-4 w-full inline-flex justify-center py-2 px-4 shadow-sm text-sm font-medium rounded-md">
                     Calculate
                 </Button>
             </BlurFade>

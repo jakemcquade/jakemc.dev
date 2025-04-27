@@ -17,13 +17,13 @@ export default function Render() {
     const resultRef = useRef<HTMLDivElement>(null);
 
     const { getRootProps, getInputProps } = useDropzone({
+        accept: { "image/*": [] },
         onDrop: useCallback((acceptedFiles: File[]) => {
             const file = acceptedFiles[0] as File;
             const reader = new FileReader();
             reader.onload = (event: ProgressEvent<FileReader>) => event.target?.result && setImage(event.target.result.toString());
             reader.readAsDataURL(file);
-        }, []),
-        accept: { "image/*": [] }
+        }, [])
     })
 
     return (
