@@ -3,13 +3,21 @@
  * Tailwind included. All rights go to their respective owners.
  */
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@config "../../tailwind.config.js";
 
 @layer base {
+  *, ::after, ::before, ::backdrop, ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
+  }
 
-  /* Base Layer */
+  html {
+    touch-action: manipulation;
+  }
+}
+
+@layer base {
   * {
     @apply border-border;
   }
@@ -103,116 +111,63 @@
     color: #3079ff;
   }
 
-  @supports (font-variation-settings: normal) {
-    :root {
-      font-family: InterVariable, sans-serif;
-    }
-  }
-}
-
-@layer base {
-  body {
-    @apply bg-background text-foreground;
-    /* cursor: none; */
-  }
-
-  /* body[data-scroll-locked] {
-    margin: 0px !important;
-    padding: 0px !important;
-    margin-right: 0px !important;
-   } */
-
-  body .cursor {
-    pointer-events: none;
-  }
-
-  body .cursor__ball circle {
-    fill: #f7f8fa;
-  }
-
-  body .cursor__ball {
-    position: fixed;
-    top: 0;
-    left: 0;
-    mix-blend-mode: difference;
-    z-index: 1000;
-  }
+  body { @apply bg-background text-foreground; }
 
   a {
     transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out !important;
     text-decoration: none;
   }
 
-  a:hover {
-    text-decoration: underline;
+  [role="button"], button {
+    cursor: pointer;
   }
 }
 
-h3 code {
-  @apply !text-lg md:!text-xl;
-}
+@layer components {
+  body { @apply bg-background text-foreground }
 
-pre {
-  @apply !px-0 rounded-lg overflow-x-auto py-4;
-}
+  pre { @apply px-0! rounded-lg overflow-x-auto py-4 }
+  pre [data-line] { @apply px-4 }
+  
+  h3 code { @apply text-lg! md:text-xl! }
+  code { @apply text-sm md:text-base leading-loose! }
 
-pre [data-line] {
-  @apply px-4;
-}
+  pre > code { counter-reset: line }
 
-code {
-  @apply text-sm md:text-base !leading-loose;
-}
-
-pre > code {
-  counter-reset: line;
-}
-
-code[data-theme*=" "],
-code[data-theme*=" "] span {
-  color: var(--shiki-light);
-  background-color: var(--shiki-light-bg);
-}
-
-code[data-line-numbers-max-digits="2"]>[data-line]::before {
-  width: 2rem;
-}
-
-code[data-line-numbers-max-digits="3"]>[data-line]::before {
-  width: 3rem;
-}
-
-
-@media (prefers-color-scheme: dark) {
-
-  code[data-theme*=" "],
-  code[data-theme*=" "] span {
-    color: var(--shiki-dark);
-    background-color: var(--shiki-dark-bg);
+  code[data-theme]:not(pre code),
+  code[data-theme]:not(pre code) span {
+    @apply text-(--shiki-light) dark:text-(--shiki-dark) bg-(--shiki-light-bg) dark:bg-(--shiki-dark-bg)
   }
-}
 
-code {
-  counter-reset: line;
-}
-
-code[data-line-numbers] {
-  counter-reset: line;
-}
-
-code[data-line-numbers]>[data-line]::before {
-  counter-increment: line;
-  content: counter(line);
-  @apply inline-block w-4 mr-4 text-right text-gray-500;
-}
-
-code>[data-line]::before {
-  counter-increment: line;
-  content: counter(line);
-
-  display: inline-block;
-  width: 1rem;
-  margin-right: 2rem;
-  text-align: right;
-  color: gray;
+  pre code[data-theme],
+  pre code[data-theme] span {
+    @apply bg-(--shiki-light-bg) text-(--shiki-light) dark:bg-(--shiki-dark-bg) dark:text-(--shiki-dark);
+  }
+  
+  code[data-line-numbers-max-digits="2"]>[data-line]::before {
+    width: 2rem;
+  }
+  
+  code[data-line-numbers-max-digits="3"]>[data-line]::before {
+    width: 3rem;
+  }
+  
+  code { counter-reset: line }
+  code[data-line-numbers] { counter-reset: line }
+  code[data-line-numbers] > [data-line]::before {
+    counter-increment: line;
+    content: counter(line);
+    @apply inline-block w-4 mr-4 text-right text-gray-500;
+  }
+  
+  code > [data-line]::before {
+    counter-increment: line;
+    content: counter(line);
+  
+    display: inline-block;
+    width: 1rem;
+    margin-right: 2rem;
+    text-align: right;
+    color: gray;
+  }
 }
