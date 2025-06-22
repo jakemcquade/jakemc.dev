@@ -12,7 +12,7 @@ export default function Home() {
     <main className="relative min-h-[100dvh] items-center justify-center bg-transparent px-8 pt-8">
       {/* Hero */}
       <div className={"w-full"}>
-        <BlurFadeText className={"my-2.5 text-4xl font-bold text-black dark:text-white"} delay={config.initialAnimationDelay} yOffset={8} animateByCharacter text={"Hey, I'm Jake McQuade"} />
+        <BlurFadeText className={"my-2.5 text-4xl font-bold text-black dark:text-white"} delay={config.initialAnimationDelay} yOffset={8} animateByCharacter text={"Hey, I'm Jake"} />
         {config.description.split("\n").map((line, i) => (
           <BlurFadeText key={line} className={"my-2.5 text-base font-normal text-black dark:text-white"} delay={config.initialAnimationDelay * 2 + i * 0.05} text={line} />
         ))}
@@ -21,9 +21,11 @@ export default function Home() {
       {/* Contact */}
       <div className={"w-full"}>
         <BlurFadeText className={"my-2.5 text-xl font-bold text-black dark:text-white"} delay={config.initialAnimationDelay * 3} text={"Contact"} />
-        {config.contact.split("\n").map((line, i) => (
-          <BlurFadeText key={line} className={"mb-2.5 text-base font-normal text-black dark:text-white"} delay={config.initialAnimationDelay * 4 + i * 0.05} text={line} />
-        ))}
+        <BlurFade delay={config.initialAnimationDelay * 4 + 0.05}>
+          <span className="text-base font-normal my-2.5 text-black dark:text-white">
+            Interested in collaborating, hiring, or just having a chat? Feel free to reach out at <a href="mailto:hello@jakemc.dev">hello@jakemc.dev</a> or connect with me on any of my socials.
+          </span>
+        </BlurFade>
       </div>
 
       {/* Projects */}
