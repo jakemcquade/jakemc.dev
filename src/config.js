@@ -1,6 +1,6 @@
 export default {
   name: "Jake McQuade",
-  description: "I build fast, purposeful tools for developers and creators. My open source work focuses on making people more productive and creative. I was honored to receive the Xerox Award for Innovation and Information Technology for some of this work.",
+  description: "I build fast, purposeful tools for developers and creators. My open source work focuses on making people more productive and creative.",
   initialAnimationDelay: 0.04,
   meta: {
     title: "Jake McQuade",
