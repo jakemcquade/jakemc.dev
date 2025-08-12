@@ -32,6 +32,6 @@ COPY --from=build --chown=portfolio:nodejs /app/.next/standalone ./
 COPY --from=build --chown=portfolio:nodejs /app/public ./public
 
 ENV NODE_ENV=production
-EXPOSE $PORT
+EXPOSE 3000
 
 ENTRYPOINT ["node", "server.js"]
