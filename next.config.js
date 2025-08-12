@@ -8,11 +8,16 @@ await import("./src/env.js");
 const config = {
   reactStrictMode: true,
   env: { NEXT_TELEMETRY_DISABLED: "1" },
+	output: "standalone",
   images: {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "raw.githubusercontent.com",
+        hostname: "lh6.googleusercontent.com"
+      },
+      {
+        protocol: "https",
+        hostname: "raw.githubusercontent.com"
       },
       {
         protocol: "https",
