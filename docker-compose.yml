@@ -6,6 +6,8 @@ services:
     build: .
     ports:
       - 5000:5000
+    env_file:
+      - .env
     networks:
       - proxy
     labels:
