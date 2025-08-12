@@ -1,0 +1,32 @@
+services:
+  jakemc_dev:
+    container_name: "jakemc_dev"
+    pull_policy: build
+    restart: always
+    build: .
+    ports:
+      - 5000:5000
+    env:
+      - PORT=5000
+    networks:
+      - proxy
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.jakemc_dev.rule=Host(`jakemc.dev`)"
+      - "traefik.http.routers.jakemc_dev.entrypoints=websecure"
+      - "traefik.http.routers.jakemc_dev.tls=true"
+      - "traefik.http.routers.jakemc_dev.tls.certresolver=cloudflare"
+      - "traefik.http.services.jakemc_dev.loadbalancer.server.port=5000"
+  
+      - "traefik.http.middlewares.redirect-to-base.redirectregex.regex=^https://www\\.(.*)$$"
+      - "traefik.http.middlewares.redirect-to-base.redirectregex.replacement=https://$${1}"
+      - "traefik.http.middlewares.redirect-to-base.redirectregex.permanent=true"
+
+      - "traefik.http.routers.www_jakemc_dev.rule=Host(`www.jakemc.dev`)"
+      - "traefik.http.routers.www_jakemc_dev.entrypoints=websecure"
+      - "traefik.http.routers.www_jakemc_dev.tls=true"
+      - "traefik.http.routers.www_jakemc_dev.tls.certresolver=cloudflare"
+      - "traefik.http.routers.www_jakemc_dev.middlewares=redirect-to-base"
+networks:
+  proxy:
+    external: true
