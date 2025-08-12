@@ -3,6 +3,7 @@ FROM node:22-alpine AS base
 RUN apk add --no-cache libc6-compat
 
 ENV NEXT_TELEMETRY_DISABLED=1
+ENV PORT=5000
 
 # Stage 2: Build
 FROM base AS build
@@ -32,6 +33,6 @@ COPY --from=build --chown=portfolio:nodejs /app/.next/standalone ./
 COPY --from=build --chown=portfolio:nodejs /app/public ./public
 
 ENV NODE_ENV=production
-EXPOSE 3000
+EXPOSE $PORT
 
 ENTRYPOINT ["node", "server.js"]
