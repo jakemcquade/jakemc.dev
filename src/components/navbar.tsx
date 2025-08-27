@@ -1,6 +1,6 @@
 "use client";
 
-import { AnimatePresence, MotionConfig, motion } from "framer-motion";
+import { AnimatePresence, MotionConfig, motion } from "motion/react";
 import { RiCloseLargeFill, RiMenu3Fill } from "react-icons/ri";
 import { LuExternalLink, LuMoon, LuSun } from "react-icons/lu";
 import React, { useEffect, useState } from "react";

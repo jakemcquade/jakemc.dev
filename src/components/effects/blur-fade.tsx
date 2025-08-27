@@ -1,9 +1,11 @@
 "use client";
 
-import { AnimatePresence, motion, useInView, UseInViewOptions, Variants } from "framer-motion";
+import { AnimatePresence, motion, useInView, UseInViewOptions, Variants, MotionProps } from "motion/react";
 import { useRef } from "react";
 
-interface BlurFadeProps {
+type MarginType = UseInViewOptions["margin"];
+
+interface BlurFadeProps extends MotionProps {
   children: React.ReactNode;
   className?: string;
   variant?: {
@@ -12,29 +14,41 @@ interface BlurFadeProps {
   };
   duration?: number;
   delay?: number;
-  yOffset?: number;
+  offset?: number;
+  direction?: "up" | "down" | "left" | "right";
   inView?: boolean;
-  inViewMargin?: string;
+  inViewMargin?: MarginType;
   blur?: string;
 }
 
-const BlurFade = ({
+export default function BlurFade({
   children,
   className,
   variant,
   duration = 0.4,
   delay = 0,
-  yOffset = 6,
+  offset = 6,
+  direction = "down",
   inView = false,
   inViewMargin = "-50px",
   blur = "6px",
-}: BlurFadeProps) => {
+  ...props
+}: BlurFadeProps) {
   const ref = useRef(null);
-  const inViewResult = useInView(ref, { once: true, margin: inViewMargin as UseInViewOptions["margin"] });
+  const inViewResult = useInView(ref, { once: true, margin: inViewMargin });
   const isInView = !inView || inViewResult;
   const defaultVariants: Variants = {
-    hidden: { y: yOffset, opacity: 0, filter: `blur(${blur})` },
-    visible: { y: -yOffset, opacity: 1, filter: "blur(0px)" },
+    hidden: {
+      [direction === "left" || direction === "right" ? "x" : "y"]:
+        direction === "right" || direction === "down" ? -offset : offset,
+      opacity: 0,
+      filter: `blur(${blur})`,
+    },
+    visible: {
+      [direction === "left" || direction === "right" ? "x" : "y"]: 0,
+      opacity: 1,
+      filter: `blur(0px)`,
+    },
   };
   const combinedVariants = variant || defaultVariants;
   return (
@@ -51,11 +65,10 @@ const BlurFade = ({
           ease: "easeOut",
         }}
         className={className}
+        {...props}
       >
         {children}
       </motion.div>
     </AnimatePresence>
   );
-};
-
-export default BlurFade;
+}
