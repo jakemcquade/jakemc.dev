@@ -1,38 +1,39 @@
 # Stage 1: Base
-FROM node:22-alpine AS base
+FROM oven/bun:1-alpine AS base
 RUN apk add --no-cache libc6-compat
+WORKDIR /app
 
 ENV NEXT_TELEMETRY_DISABLED=1
 ENV PORT=5000
 
-# Stage 2: Build
-FROM base AS build
-WORKDIR /app
+# Stage 2: Install
+FROM base AS install
+RUN mkdir -p /temp/dev
+COPY package.json bun.lock /temp/dev/
+RUN cd /temp/dev && bun install --frozen-lockfile
 
-COPY package.json yarn.lock ./
-RUN yarn install --frozen-lockfile
+RUN mkdir -p /temp/prod
+COPY package.json bun.lock /temp/prod/
+RUN cd /temp/prod && bun install --frozen-lockfile --production
 
+# Stage 3: Prerelease
+FROM base AS prerelease
+COPY --from=install /temp/dev/node_modules node_modules
 COPY . .
-RUN yarn build
-
-# Stage 3: Runner
-FROM base AS runner
-WORKDIR /app
-
-RUN addgroup --system --gid 1001 nodejs
-RUN adduser --system --uid 1001 portfolio --ingroup nodejs
-USER portfolio
-
-COPY --from=build --chown=portfolio:nodejs /app/next.config.js .
-COPY --from=build --chown=portfolio:nodejs /app/package.json .
-COPY --from=build --chown=portfolio:nodejs /app/yarn.lock .
-
-COPY --from=build --chown=portfolio:nodejs /app/node_modules ./node_modules
-COPY --from=build --chown=portfolio:nodejs /app/.next/static ./.next/static
-COPY --from=build --chown=portfolio:nodejs /app/.next/standalone ./
-COPY --from=build --chown=portfolio:nodejs /app/public ./public
 
 ENV NODE_ENV=production
-EXPOSE $PORT
+# RUN bun test
+RUN bun run build
 
+# Final Stage: Release
+FROM base AS release
+COPY --from=install /app/node_modules ./node_modules
+COPY --from=prerelease /app/.next/static ./.next/static
+COPY --from=prerelease /app/.next/standalone ./
+COPY --from=prerelease /app/next.config.js .
+COPY --from=prerelease /app/public ./public
+COPY --from=prerelease /app/package.json .
+
+USER bun
+EXPOSE $PORT/tcp
 ENTRYPOINT ["node", "server.js"]
