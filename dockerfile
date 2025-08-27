@@ -27,7 +27,7 @@ RUN bun run build
 
 # Final Stage: Release
 FROM base AS release
-COPY --from=install /app/node_modules ./node_modules
+COPY --from=install /temp/prod/node_modules ./node_modules
 COPY --from=prerelease /app/.next/static ./.next/static
 COPY --from=prerelease /app/.next/standalone ./
 COPY --from=prerelease /app/next.config.js .
