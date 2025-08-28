@@ -1,7 +1,7 @@
 # Stage 1: Base
 FROM oven/bun:1-alpine AS base
 RUN apk add --no-cache libc6-compat
-WORKDIR /app
+WORKDIR /jmapp
 
 ENV NEXT_TELEMETRY_DISABLED=1
 ENV PORT=5000
