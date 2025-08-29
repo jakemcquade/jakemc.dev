@@ -1,5 +1,5 @@
 # Stage 1: Base
-FROM oven/bun:1-alpine AS base
+FROM oven/bun:1.2-alpine AS base
 RUN apk add --no-cache libc6-compat
 WORKDIR /jmapp
 
