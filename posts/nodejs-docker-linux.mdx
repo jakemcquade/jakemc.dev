@@ -1,0 +1,109 @@
+---
+title: "Using Docker to Containerize Your Node.js Applications"  
+publishedAt: "2025-02-04"  
+summary: "A simple guide on how to use Docker to containerize and deploy your Node.js apps."  
+tags: ["Docker", "Node.js", "Containers", "Deployment"]  
+---
+
+## Introduction  
+Docker makes it easy to package and deploy Node.js applications. Instead of worrying about environment differences, you can create a container that works anywhere. This guide will walk you through containerizing a Node.js app using Docker.  
+
+## Dependencies  
+Make sure you have Docker installed. You can check by running:  
+
+```sh
+docker -v
+```
+
+If it's not installed, head over to [Docker’s official site](https://www.docker.com/) and follow the installation guide for your OS.  
+
+## Setting Up a Node.js Project  
+If you don’t have a Node.js app yet, create one:  
+
+```sh
+mkdir my-node-app && cd my-node-app
+npm init -y
+```
+
+Then, install Express for a simple web server:  
+
+```sh
+npm install express
+```
+
+Create an `index.js` file:  
+
+```js
+const express = require("express");
+const app = express();
+const PORT = 3000;
+
+app.get("/", (req, res) => {
+  res.send("Hello, Docker!");
+});
+
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
+```
+
+## Writing a Dockerfile  
+A `Dockerfile` defines how your app will be containerized. Create a new file named `Dockerfile` in your project directory and add this:  
+
+```dockerfile
+# Use official Node.js image
+FROM node:18
+
+# Set working directory
+WORKDIR /app
+
+# Copy package.json and install dependencies
+COPY package.json package-lock.json ./
+RUN npm install
+
+# Copy app files
+COPY . .
+
+# Expose port
+EXPOSE 3000
+
+# Command to run app
+CMD ["node", "index.js"]
+```
+
+## Building and Running the Container  
+Now, let's build the Docker image:  
+
+```sh
+docker build -t my-node-app .
+```
+
+Run the container:  
+
+```sh
+docker run -p 3000:3000 my-node-app
+```
+
+Your app should now be running at [http://localhost:3000](http://localhost:3000).  
+
+## Managing the Container  
+To list running containers:  
+
+```sh
+docker ps
+```
+
+To stop a running container:  
+
+```sh
+docker stop <container_id>
+```
+
+To remove a container:  
+
+```sh
+docker rm <container_id>
+```
+
+## Conclusion  
+That's it! You've successfully containerized a Node.js application using Docker. Now, you can deploy it anywhere Docker runs. If you need to scale, just spin up more containers.
