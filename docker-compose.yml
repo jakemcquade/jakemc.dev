@@ -8,6 +8,8 @@ services:
       - 5000:5000
     networks:
       - proxy
+    environment:
+      - NEXT_PUBLIC_SITE=https://jakemc.dev
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.jakemc_dev.rule=Host(`jakemc.dev`)"
