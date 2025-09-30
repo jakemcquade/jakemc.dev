@@ -2,6 +2,7 @@
 FROM node:22-alpine AS base
 RUN apk add --no-cache libc6-compat
 
+ENV NEXT_PUBLIC_SITE="https://jakemc.dev"
 ENV NEXT_TELEMETRY_DISABLED=1
 ENV PORT=5000
 
