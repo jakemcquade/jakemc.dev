@@ -20,6 +20,7 @@ next-env.d.ts
 
 # production
 /build
+/dist
 
 # misc
 .DS_Store
@@ -44,3 +45,7 @@ yarn-error.log*
 
 # idea files
 .idea
+
+# Vinext
+.wrangler
+worker

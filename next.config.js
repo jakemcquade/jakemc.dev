@@ -8,7 +8,7 @@ await import("./src/env.js");
 const config = {
   reactStrictMode: true,
   env: { NEXT_TELEMETRY_DISABLED: "1" },
-	output: "standalone",
+//	output: "standalone",
   images: {
     remotePatterns: [
       {
