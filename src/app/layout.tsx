@@ -10,7 +10,11 @@ import { cn } from "~/lib/utils";
 import config from "~/config";
 
 const font = Inter({ subsets: ["latin"], variable: "--font-sans" });
-export const viewport: Viewport = { themeColor: "#323232" };
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  themeColor: "#323232"
+};
 
 export function generateMetadata(): Metadata {
   const { title, description, keywords } = config.meta;

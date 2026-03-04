@@ -5,7 +5,7 @@
 
 @import "tailwindcss";
 
-@config "../../tailwind.config.js";
+@config "../../tailwind.config.cjs";
 
 @layer base {
   *, ::after, ::before, ::backdrop, ::file-selector-button {

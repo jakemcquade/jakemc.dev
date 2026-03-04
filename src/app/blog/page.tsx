@@ -9,7 +9,7 @@ export const metadata = {
   description: "A collection of insightful tutorials, guides, and various topics of interest by Jake McQuade.",
 };
 
-export default async function Blog() {
+export default function Blog() {
   const posts = await getBlogPosts();
 
   return (
