@@ -6,14 +6,20 @@ import { FaArrowUp } from "react-icons/fa";
 export default function BackUp() {
   useEffect(() => {
     const button = document.getElementById("top");
-    window.onscroll = function () {
-      if (document.documentElement.scrollTop > 80) {
-        button?.classList.add("opacity-100");
-        button?.classList.remove("opacity-0");
-      } else {
-        button?.classList.remove("opacity-100");
-        button?.classList.add("opacity-0");
-      }
+
+    const onScroll = () => {
+      if (!button) return;
+
+      const isVisible = document.documentElement.scrollTop > 80;
+      button.classList.toggle("opacity-100", isVisible);
+      button.classList.toggle("opacity-0", !isVisible);
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+
+    return () => {
+      window.removeEventListener("scroll", onScroll);
     };
   }, []);
 

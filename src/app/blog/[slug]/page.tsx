@@ -9,7 +9,7 @@ import config from "~/config";
 
 export type PageProps = Promise<{ slug: string }>;
 export async function generateStaticParams() {
-  const posts = await getBlogPosts();
+  const posts = getBlogPosts();
   return posts.map((post) => ({ slug: post.slug }));
 }
 
