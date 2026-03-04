@@ -23,33 +23,63 @@ function findRawBySlug(slug: string): string | null {
   return null;
 }
 
-export async function getPost(slug: string) {
+const metadataCache = new Map<string, Record<string, any>>();
+const postCache = new Map<string, Promise<{ source: string; metadata: Record<string, any>; slug: string }>>();
+let highlighterPromise: ReturnType<typeof createHighlighter> | null = null;
+
+function getPostMetadata(slug: string) {
+  const cached = metadataCache.get(slug);
+  if (cached) return cached;
+
   const raw = findRawBySlug(slug);
   if (!raw) throw new Error(`Post not found: ${slug}`);
 
-  const { content: rawContent, data: metadata } = matter(raw);
+  const { data: metadata } = matter(raw);
+  metadataCache.set(slug, metadata as Record<string, any>);
 
-  const content = await unified()
-    .use(remarkParse)
-    .use(remarkRehype)
-    .use(rehypePrettyCode, {
-      // https://rehype-pretty.pages.dev/#usage
-      keepBackground: false,
-      theme: {
-        light: "min-light",
-        dark: "min-dark",
-      },
-      // IMPORTANT: avoid Shiki's default WASM Oniguruma engine on Cloudflare Workers
-      getHighlighter: (options) =>
-        createHighlighter({
-          ...options,
-          engine: createJavaScriptRegexEngine({ forgiving: true }),
-        }),
-    })
-    .use(rehypeStringify)
-    .process(rawContent);
+  return metadata as Record<string, any>;
+}
 
-  return { source: content.toString(), metadata, slug };
+export async function getPost(slug: string) {
+  const cached = postCache.get(slug);
+  if (cached) return cached;
+
+  const postPromise = (async () => {
+    const raw = findRawBySlug(slug);
+    if (!raw) throw new Error(`Post not found: ${slug}`);
+
+    const { content: rawContent, data: metadata } = matter(raw);
+
+    const content = await unified()
+      .use(remarkParse)
+      .use(remarkRehype)
+      .use(rehypePrettyCode, {
+        // https://rehype-pretty.pages.dev/#usage
+        keepBackground: false,
+        theme: {
+          light: "min-light",
+          dark: "min-dark",
+        },
+        // IMPORTANT: avoid Shiki's default WASM Oniguruma engine on Cloudflare Workers
+        getHighlighter: (options) => {
+          if (!highlighterPromise) {
+            highlighterPromise = createHighlighter({
+              ...options,
+              engine: createJavaScriptRegexEngine({ forgiving: true }),
+            });
+          }
+
+          return highlighterPromise;
+        },
+      })
+      .use(rehypeStringify)
+      .process(rawContent);
+
+    return { source: content.toString(), metadata, slug };
+  })();
+
+  postCache.set(slug, postPromise);
+  return postPromise;
 }
 
 export function getBlogPosts() {
@@ -57,10 +87,5 @@ export function getBlogPosts() {
     filePath.split("/").pop()!.replace(/\.mdx?$/, ""),
   );
 
-  return Promise.all(
-    slugs.map(async (slug) => {
-      const { metadata, source } = await getPost(slug);
-      return { metadata, slug, source };
-    }),
-  );
+  return slugs.map((slug) => ({ metadata: getPostMetadata(slug), slug }));
 }

@@ -1,7 +1,7 @@
 "use client";
 
 import { cn } from "../../lib/utils";
-import { AnimatePresence, motion, Variants } from "motion/react";
+import { motion, Variants } from "motion/react";
 import { useMemo } from "react";
 
 interface BlurFadeTextProps {
@@ -37,45 +37,39 @@ const BlurFadeText = ({
   if (animateByCharacter) {
     return (
       <div className="flex">
-        <AnimatePresence>
-          {characters.map((char, i) => (
-            <motion.span
-              key={char + i}
-              initial="hidden"
-              animate="visible"
-              exit="hidden"
-              variants={combinedVariants}
-              transition={{
-                delay: delay + i * characterDelay,
-                ease: "easeOut",
-              }}
-              className={cn("inline-block", className)}
-              style={{ width: char.trim() === "" ? "0.2em" : "auto" }}
-            >
-              {char}
-            </motion.span>
-          ))}
-        </AnimatePresence>
+        {characters.map((char, i) => (
+          <motion.span
+            key={char + i}
+            initial="hidden"
+            animate="visible"
+            variants={combinedVariants}
+            transition={{
+              delay: delay + i * characterDelay,
+              ease: "easeOut",
+            }}
+            className={cn("inline-block", className)}
+            style={{ width: char.trim() === "" ? "0.2em" : "auto" }}
+          >
+            {char}
+          </motion.span>
+        ))}
       </div>
     );
   }
 
   return (
     <div className="flex">
-      <AnimatePresence>
-        <motion.span
-          initial="hidden"
-          animate="visible"
-          exit="hidden"
-          variants={combinedVariants}
-          transition={{
-            delay,
-            ease: "easeOut",
-          }}
-          className={cn("inline-block", className)}
-          dangerouslySetInnerHTML={{ __html: text }}
-        />
-      </AnimatePresence>
+      <motion.span
+        initial="hidden"
+        animate="visible"
+        variants={combinedVariants}
+        transition={{
+          delay,
+          ease: "easeOut",
+        }}
+        className={cn("inline-block", className)}
+        dangerouslySetInnerHTML={{ __html: text }}
+      />
     </div>
   );
 };
