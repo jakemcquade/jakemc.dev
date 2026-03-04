@@ -10,6 +10,7 @@ const config = {
   env: { NEXT_TELEMETRY_DISABLED: "1" },
 //	output: "standalone",
   images: {
+    unoptimized: true,
     remotePatterns: [
       {
         protocol: "https",
