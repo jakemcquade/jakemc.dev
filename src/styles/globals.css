@@ -23,7 +23,7 @@
   }
 
   :root {
-    font-family: Inter, sans-serif;
+    font-family: var(--font-sans), ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
     font-feature-settings: "liga" 1, "calt" 1;
   }
 

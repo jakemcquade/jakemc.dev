@@ -1,15 +1,16 @@
 import type { Metadata, Viewport } from "next";
-import { Inter } from "next/font/google";
 import { ReactNode } from "react";
+import { Inter } from "next/font/google";
 import Script from "next/script";
 
 import { ThemeProvider } from "~/components/theme";
 // import MouseEffect from "~/components/mouse";
 import Footer from "~/components/footer";
-import { cn } from "~/lib/utils";
 import config from "~/config";
 
 const font = Inter({ subsets: ["latin"], variable: "--font-sans" });
+
+
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
@@ -75,7 +76,7 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
   return (
     <html lang={"en"} data-theme={"dark"} style={{ colorScheme: "dark", scrollBehavior: "smooth" }} suppressHydrationWarning>
       <head />
-      <body className={cn("mx-auto min-h-screen max-w-2xl bg-background font-sans antialiased", font.className)}>
+      <body className={`${font.variable} mx-auto min-h-screen max-w-2xl bg-background font-sans antialiased`}>
         <ThemeProvider attribute={"data-theme"} defaultTheme={"dark"} disableTransitionOnChange>
           {children}
           <Footer />
