@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import { LuChevronLeft, LuChevronRight } from "react-icons/lu"
+import { ChevronLeft, ChevronRight } from "lucide-react"
 import { DayPicker } from "react-day-picker"
 
 import { cn } from "~/lib/utils"
@@ -60,10 +60,10 @@ function Calendar({
       components={{
         Chevron: (props) => {
           if (props.orientation === "left") {
-            return <LuChevronLeft {...props} className={cn(props.className, "h-4 w-4")} />
+            return <ChevronLeft {...props} className={cn(props.className, "h-4 w-4")} />
           }
 
-          return <LuChevronRight {...props} className={cn(props.className, "h-4 w-4")} />;
+          return <ChevronRight {...props} className={cn(props.className, "h-4 w-4")} />;
         }
       }}
       {...props}

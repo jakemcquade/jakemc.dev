@@ -1,8 +1,7 @@
 "use client";
 
 import { AnimatePresence, MotionConfig, motion } from "motion/react";
-import { RiCloseLargeFill, RiMenu3Fill } from "react-icons/ri";
-import { LuExternalLink, LuMoon, LuSun } from "react-icons/lu";
+import { X, Menu, ExternalLink, Moon, Sun } from "lucide-react";
 import React, { useEffect, useState } from "react";
 import { useTheme } from "next-themes";
 import NextImage from "next/image";
@@ -35,9 +34,9 @@ export default function Navbar({ logo = "/logo.png" }) {
 					onClick={() => setOpened(!opened)}
 				>
 					{opened ? (
-            <RiCloseLargeFill className={"block h-6 w-6"} />
+            <X className={"block h-6 w-6"} />
 					) : (
-            <RiMenu3Fill className={"block h-6 w-6"} />
+            <Menu className={"block h-6 w-6"} />
 					)}
 				</Button>
 			</div>
@@ -115,8 +114,8 @@ export function ModeToggle() {
 
   return (
     <Button aria-label={"toggle theme"} variant={"ghost"} size={"icon"} className={"relative"} onClick={() => setTheme(theme === "dark" ? "light" : "dark")}>
-      <LuSun className="absolute h-6 w-6 sm:h-4 sm:w-4 hidden transition-all dark:block" />
-      <LuMoon className="h-6 w-6 sm:h-4 sm:w-4 block transition-all dark:hidden" />
+      <Sun className="absolute h-6 w-6 sm:h-4 sm:w-4 hidden transition-all dark:block" />
+      <Moon className="h-6 w-6 sm:h-4 sm:w-4 block transition-all dark:hidden" />
       <span className="sr-only">Toggle theme</span>
     </Button>
   );
@@ -139,7 +138,7 @@ export function NavItems({ isMobile }: { isMobile?: boolean }) {
                         <Link href={component.href} className={"block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none hover:no-underline transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent- w-full"} title={component.label}>
                           <div className={"flex items-center gap-1 text-sm font-medium leading-none"}>
                             {component.label}
-                            {component.href.startsWith("http") ? <LuExternalLink className={"inline-block align-middle w-3 h-3"} /> : null}
+                            {component.href.startsWith("http") ? <ExternalLink className={"inline-block align-middle w-3 h-3"} /> : null}
                           </div>
                           <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">{component.subLabel}</p>
                         </Link>
