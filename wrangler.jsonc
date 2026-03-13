@@ -20,13 +20,13 @@
 			"id": "468a0f544e214001aa46909fb165b74a"
 		}
 	],
-  "observability": {
-    "logs": {
-      "enabled": true,
-      "invocation_logs": true
-    },
-    "traces": {
-      "enabled": true
-    }
-  }
+	"observability": {
+		"logs": {
+			"enabled": true,
+			"invocation_logs": true
+		},
+		"traces": {
+			"enabled": true
+		}
+	}
 }
