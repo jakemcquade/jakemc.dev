@@ -50,7 +50,8 @@ export default function Navbar({ logo = "/logo.png" }) {
           {/* Branding */}
           <Link href={"/"} aria-label="Go home" className="ml-4 flex w-4/5 items-center justify-start sm:ml-0 sm:w-fit">
             <span className={"transition-transform hover:scale-110"}>
-              <NextImage width={36} height={36} className="rounded-md" src={logo} alt="Icon" />
+              {/* <NextImage width={36} height={36} className="rounded-md" src={logo} alt="Icon" /> */}
+              <img src={logo} alt="Icon" className="rounded-md h-9 w-9" />
             </span>
           </Link>
 
