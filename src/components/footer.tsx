@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import { FaTwitter, FaYoutube, FaGithub, FaDiscord, FaSpotify, FaInstagram } from "react-icons/fa";
+import { SiX, SiYoutube, SiGithub, SiDiscord, SiSpotify, SiInstagram } from "@icons-pack/react-simple-icons";
 import config from "~/config";
 
 const socialClasses = "h-5 w-5 text-gray-500 hover:text-gray-900 dark:hover:text-white dark:text-gray-400 transition-colors";
@@ -13,17 +13,17 @@ export default function Footer() {
         {config.socials.map(social => (
             <Link key={social.label} className={"text-white"} aria-label={social.label} href={social.href}>
             {social.label.toLowerCase() === "github" ? (
-              <FaGithub className={socialClasses} />
+              <SiGithub className={socialClasses} />
             ) : social.label.toLowerCase() === "discord" ? (
-              <FaDiscord className={socialClasses} />
+              <SiDiscord className={socialClasses} />
             ) : social.label.toLowerCase() === "youtube" ? (
-              <FaYoutube className={socialClasses} />
+              <SiYoutube className={socialClasses} />
             ) : social.label.toLowerCase() === "twitter" ? (
-              <FaTwitter className={socialClasses} />
+              <SiX className={socialClasses} />
             ) : social.label.toLowerCase() === "instagram" ? (
-              <FaInstagram className={socialClasses} />
+              <SiInstagram className={socialClasses} />
             ) : social.label.toLowerCase() === "spotify" ? (
-              <FaSpotify className={socialClasses} />
+              <SiSpotify className={socialClasses} />
             ) : null}
             </Link>
         ))}

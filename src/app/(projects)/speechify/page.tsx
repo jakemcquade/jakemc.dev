@@ -8,7 +8,7 @@ import { saveAs } from "file-saver";
 import BlurFadeText from "~/components/effects/blur-fade-text";
 import BlurFade from "~/components/effects/blur-fade";
 import { Button } from "~/components/button";
-import { LuDownload } from "react-icons/lu";
+import { Download } from "lucide-react";
 import { cn } from "~/lib/utils";
 import config from "~/config";
 
@@ -75,7 +75,7 @@ export default function Render() {
                                 });
                             }
                         }}>
-                        <LuDownload className={"w-6 h-6"} />
+                        <Download className={"w-6 h-6"} />
                         Save
                     </Button>
                 </div>

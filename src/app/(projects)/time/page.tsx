@@ -1,11 +1,10 @@
 "use client";
 
 import { differenceInDays, eachDayOfInterval, format } from "date-fns";
-import { LuCalendar } from "react-icons/lu";
+import { Calendar as CalendarIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
-import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "~/components/select";
 import { Popover, PopoverContent, PopoverTrigger } from "~/components/popover";
 import BlurFadeText from "~/components/effects/blur-fade-text";
 import BlurFade from "~/components/effects/blur-fade";
@@ -64,17 +63,36 @@ export default function Render() {
         <div className="max-w-md min-h-[65dvh] mx-auto px-8 pt-8 mt-10 bg-background rounded-lg shadow-md items-center">
             <BlurFadeText className={"text-3xl font-bold my-4 mt-2.5 text-gray-900 dark:text-gray-100"} delay={config.initialAnimationDelay} yOffset={8} animateByCharacter text={"Date Calculator"} />
             <BlurFade delay={config.initialAnimationDelay * 2}>
-                <Popover>
-                    <PopoverTrigger asChild>
-                        <Button variant={"outline"} className={cn("w-full pl-3 text-left font-normal", !endDate && "text-muted-foreground")}>
-                            {endDate ? format(endDate, "PPP") : <span>Pick a date</span>}
-                            <LuCalendar className="ml-auto h-4 w-4 opacity-50" />
-                        </Button>
-                    </PopoverTrigger>
-                    <PopoverContent className="w-auto p-0 mt-2" align="start">
-                        <Calendar mode="single" selected={endDate} onSelect={setEndDate} disabled={(date) => date < new Date() || date < new Date("1900-01-01")} initialFocus />
-                    </PopoverContent>
-                </Popover>
+                <div className="relative w-full">
+                    <Popover>
+                        <PopoverTrigger asChild>
+                            <button
+                                type="button"
+                                className={cn(
+                                    "w-full pl-3 pr-10 py-2 text-left font-normal rounded-md border border-input bg-background text-sm flex items-center transition-colors",
+                                    !endDate && "text-muted-foreground"
+                                )}
+                            >
+                                {endDate ? format(endDate, "PPP") : <span>Pick a date</span>}
+                                <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
+                            </button>
+                        </PopoverTrigger>
+                        <PopoverContent className="w-max p-0 mt-2">
+                            <div className="px-2 py-1 text-sm text-white bg-background-3 rounded-md">
+                                Select a date
+                            </div>
+                            <div className="mt-2">
+                                <Calendar
+                                    mode="single"
+                                    selected={endDate}
+                                    onSelect={setEndDate}
+                                    disabled={(date) => date < new Date() || date < new Date("1900-01-01")}
+                                    initialFocus
+                                />
+                            </div>
+                        </PopoverContent>
+                    </Popover>
+                </div>
             </BlurFade>
             <BlurFade className={"mt-4"} delay={config.initialAnimationDelay * 3}>
                 <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">Select a day</label>
