@@ -1,11 +1,13 @@
 /** @type {import("tailwindcss").Config} */
-export default {
+module.exports = {
   darkMode: ["class", "[data-theme=\"dark\"]"],
   content: [
     "./src/components/**/*.{ts,tsx}",
-    "./src/app/**/*.{ts,tsx}"
+    "./src/layouts/**/*.{astro,ts,tsx}",
+    "./src/pages/**/*.{astro,ts,tsx}"
   ],
   prefix: "",
+  plugins: [],
   theme: {
     container: {
       center: true,
@@ -67,27 +69,7 @@ export default {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
-      },
-      keyframes: {
-        "accordion-down": {
-          from: { height: "0" },
-          to: { height: "var(--radix-accordion-content-height)" },
-        },
-        "accordion-up": {
-          from: { height: "var(--radix-accordion-content-height)" },
-          to: { height: "0" },
-        },
-        "caret-blink": {
-          "0%,70%,100%": { opacity: "1" },
-          "20%,50%": { opacity: "0" },
-        },
-      },
-      animation: {
-        "accordion-down": "accordion-down 0.2s ease-out",
-        "accordion-up": "accordion-up 0.2s ease-out",
-        "caret-blink": "caret-blink 1.25s ease-out infinite",
-      },
+      }
     },
-  },
-  plugins: [require("tailwindcss-animate")],
+  }
 };
