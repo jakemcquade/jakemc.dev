@@ -1,7 +1,8 @@
 import { twMerge } from "tailwind-merge";
-import { ClassValue, Options } from "~/types";
+import config from "~/config";
+import type { ClassValue, Options } from "~/types.ts";
 
-export const getBaseUrl = () => process.env.NEXT_PUBLIC_SITE ?? "http://localhost:3000";
+export const getBaseUrl = () => config.meta.site ?? "http://localhost:3000";
 export const getCanonicalUrl = (...pages: string[]) => `${getBaseUrl()}/${pages.join("/")}`;
 
 export const clsx = (...args: ClassValue[]) => args.map(flattenClass).filter(Boolean).join(" ");
