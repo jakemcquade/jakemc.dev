@@ -1,0 +1,101 @@
+---
+import { SiX, SiYoutube, SiGithub, SiDiscord, SiSpotify, SiInstagram } from "@icons-pack/react-simple-icons";
+import { ClientRouter } from "astro:transitions";
+
+import Navbar from "~/components/navbar";
+import config from "~/config";
+import "~/styles/globals.css";
+
+interface Props {
+  title?: string;
+  description?: string;
+  keywords?: string[];
+}
+
+const {
+  title = config.meta.title,
+  description = config.meta.description,
+  keywords = config.meta.keywords,
+} = Astro.props;
+
+const fullTitle = title === config.meta.title ? title : `${title} | ${config.meta.title}`;
+
+const socialClasses = "h-5 w-5 text-gray-700 hover:text-black dark:text-gray-300 dark:hover:text-white transition-colors";
+
+---
+
+<html lang="en" style="scroll-behavior: smooth;">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <meta name="keywords" content={keywords.join(",")} />
+    <meta name="creator" content="Jake McQuade (jakemc.dev)" />
+    <meta name="publisher" content="Jake McQuade (jakemc.dev)" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={config.meta.site} />
+    <meta property="og:image" content={`${config.meta.site}${config.meta.logo}`} />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={fullTitle} />
+    <link rel="manifest" href="/manifest.json" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <script is:inline>
+      (() => {
+        const root = document.documentElement;
+
+        try {
+          const storedTheme = localStorage.getItem("theme");
+          const resolvedTheme =
+            storedTheme === "light" || storedTheme === "dark"
+              ? storedTheme
+              : window.matchMedia("(prefers-color-scheme: dark)").matches
+                ? "dark"
+                : "light";
+
+          root.setAttribute("data-theme", resolvedTheme);
+          root.style.colorScheme = resolvedTheme;
+        } catch {
+          root.setAttribute("data-theme", "dark");
+          root.style.colorScheme = "dark";
+        }
+      })();
+    </script>
+  </head>
+  <body class="mx-auto min-h-screen max-w-2xl bg-background font-sans antialiased">
+    <ClientRouter />
+    <Navbar client:load />
+    <slot />
+
+    <footer class="mx-6 my-4 py-6 flex flex-col items-center justify-center gap-2 bg-transparent text-center">
+      <p class={"text-base text-gray-700 dark:text-gray-300"}>Designed by Jake McQuade</p>
+      <ul class={"mt-1 flex flex-wrap items-center justify-center space-x-3 text-sm font-medium text-gray-500 dark:text-gray-400 sm:mt-0"}>
+        {config.socials.map(social => (
+          <li id={social.label}>
+            <a class={"inline-flex items-center no-underline"} aria-label={social.label} href={social.href} target="_blank" rel="noopener noreferrer">
+              {social.label.toLowerCase() === "github" ? (
+                <SiGithub className={socialClasses} />
+              ) : social.label.toLowerCase() === "discord" ? (
+                <SiDiscord className={socialClasses} />
+              ) : social.label.toLowerCase() === "youtube" ? (
+                <SiYoutube className={socialClasses} />
+              ) : social.label.toLowerCase() === "twitter" ? (
+                <SiX className={socialClasses} />
+              ) : social.label.toLowerCase() === "instagram" ? (
+                <SiInstagram className={socialClasses} />
+              ) : social.label.toLowerCase() === "spotify" ? (
+                <SiSpotify className={socialClasses} />
+              ) : null}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </footer>
+
+    <script defer data-domain="jakemc.dev" src="https://analytics.jakemc.dev/js/script.js"></script>
+  </body>
+</html>

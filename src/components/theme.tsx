@@ -1,13 +1,13 @@
 "use client";
 
-import { ThemeProvider as NextThemesProvider, type ThemeProviderProps } from "next-themes";
 import Navbar from "./navbar";
+import { ReactNode } from "react";
 
-export function ThemeProvider({ children, ...props }: ThemeProviderProps) {
+export function ThemeProvider({ children }: { children: ReactNode }) {
   return (
-    <NextThemesProvider {...props}>
+    <>
       <Navbar />
       {children}
-    </NextThemesProvider>
+    </>
   );
 }

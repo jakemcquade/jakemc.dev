@@ -1,0 +1,19 @@
+---
+import BaseLayout from "~/layouts/BaseLayout.astro";
+import TimePage from "~/components/pages/time-calculator-page";
+import config from "~/config";
+
+const keywords = config.meta.keywords.concat([
+  "time",
+  "time calculator",
+  "calculator",
+  "time converter",
+  "time difference",
+  "time difference calculator",
+  "time difference converter",
+]);
+---
+
+<BaseLayout title="Time Calculator" description={`An easy-to-use time calculator. ${config.meta.description}`} keywords={keywords}>
+  <TimePage client:load />
+</BaseLayout>

@@ -1,0 +1,20 @@
+---
+import BaseLayout from "~/layouts/BaseLayout.astro";
+import SpeechifyPage from "~/components/pages/speechify-page";
+import config from "~/config";
+
+const keywords = config.meta.keywords.concat([
+  "speechify",
+  "speech bubble meme generator",
+  "image",
+  "speech",
+  "bubble",
+  "chat",
+  "meme",
+  "generator",
+]);
+---
+
+<BaseLayout title="Speechify Image" description={`Easily add a speech bubble to any image. ${config.meta.description}`} keywords={keywords}>
+  <SpeechifyPage client:load />
+</BaseLayout>

@@ -1,0 +1,61 @@
+---
+import BaseLayout from "~/layouts/BaseLayout.astro";
+import BackUp from "~/components/backup";
+import config from "~/config";
+import { formatDate } from "~/lib/utils";
+import { getBlogPosts, getPost } from "~/lib/blog";
+
+export const prerender = true;
+export async function getStaticPaths() {
+  const posts = getBlogPosts();
+  return posts.map((post) => ({ params: { slug: post.slug } }));
+}
+
+const { slug } = Astro.params;
+
+if (!slug) {
+  throw new Error("Missing blog slug");
+}
+
+let post;
+
+try {
+  post = await getPost(slug);
+} catch {
+  Astro.response.status = 404;
+}
+
+if (!post) {
+  throw new Error(`Post not found: ${slug}`);
+}
+
+const title = post.metadata.title;
+const description = post.metadata.summary;
+const ogImage = post.metadata.image ? `${config.meta.site}${post.metadata.image}` : `${config.meta.site}/og?title=${post.metadata.title}`;
+const keywords = config.meta.keywords.concat(post.metadata.tags ?? []);
+const schemaJson = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  headline: post.metadata.title,
+  datePublished: post.metadata.publishedAt,
+  dateModified: post.metadata.publishedAt,
+  description: post.metadata.summary,
+  image: ogImage,
+  url: `${config.meta.site}/blog/${post.slug}`,
+  author: { "@type": "Person", name: config.name },
+};
+---
+
+<BaseLayout title={title} description={description} keywords={keywords}>
+  <section id="blog" class="relative min-h-[75dvh] items-center justify-center bg-transparent px-8 pt-8">
+    <h1 class="title text-2xl font-medium tracking-tighter">{post.metadata.title}</h1>
+    <div class="mb-8 mt-2 flex items-center gap-1 text-sm text-neutral-600 dark:text-neutral-400">
+      <p>Jake McQuade</p>
+      <span>&bull;</span>
+      <p>{formatDate(post.metadata.publishedAt)}</p>
+    </div>
+    <article class="prose dark:prose-invert" set:html={post.source} />
+    <BackUp client:load />
+    <script type="application/ld+json" set:html={JSON.stringify(schemaJson)}></script>
+  </section>
+</BaseLayout>

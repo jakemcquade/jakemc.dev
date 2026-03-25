@@ -1,0 +1,11 @@
+---
+import BaseLayout from "~/layouts/BaseLayout.astro";
+import BackUp from "~/components/backup";
+import HomePage from "~/components/pages/home-page";
+import config from "~/config";
+---
+
+<BaseLayout title={config.meta.title} description={config.meta.description} keywords={config.meta.keywords}>
+  <HomePage />
+  <BackUp client:load />
+</BaseLayout>

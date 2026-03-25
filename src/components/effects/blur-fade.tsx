@@ -1,23 +1,19 @@
 "use client";
 
-import { motion, useInView, UseInViewOptions, Variants, MotionProps } from "motion/react";
-import { useMemo, useRef } from "react";
+import type { CSSProperties, HTMLAttributes } from "react";
 
-type MarginType = UseInViewOptions["margin"];
+import { cn } from "~/lib/utils";
 
-interface BlurFadeProps extends MotionProps {
+interface BlurFadeProps extends HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;
   className?: string;
-  variant?: {
-    hidden: { y: number };
-    visible: { y: number };
-  };
+  variant?: unknown;
   duration?: number;
   delay?: number;
   offset?: number;
   direction?: "up" | "down" | "left" | "right";
   inView?: boolean;
-  inViewMargin?: MarginType;
+  inViewMargin?: string;
   blur?: string;
 }
 
@@ -25,50 +21,36 @@ export default function BlurFade({
   children,
   className,
   variant,
-  duration = 0.4,
+  duration = 0.28,
   delay = 0,
-  offset = 6,
+  offset = 4,
   direction = "down",
   inView = false,
   inViewMargin = "-50px",
-  blur = "6px",
+  blur = "4px",
+  style,
   ...props
 }: BlurFadeProps) {
-  const ref = useRef(null);
-  const inViewResult = useInView(ref, { once: true, margin: inViewMargin });
-  const isInView = !inView || inViewResult;
-  const defaultVariants: Variants = useMemo(
-    () => ({
-      hidden: {
-        [direction === "left" || direction === "right" ? "x" : "y"]:
-          direction === "right" || direction === "down" ? -offset : offset,
-        opacity: 0,
-        filter: `blur(${blur})`,
-      },
-      visible: {
-        [direction === "left" || direction === "right" ? "x" : "y"]: 0,
-        opacity: 1,
-        filter: "blur(0px)",
-      },
-    }),
-    [blur, direction, offset],
-  );
+  const directionSign = direction === "right" || direction === "down" ? -1 : 1;
+  const axis = direction === "left" || direction === "right" ? "x" : "y";
+  const translatedOffset = `${directionSign * offset}px`;
 
   return (
-    <motion.div
-      ref={ref}
-      initial="hidden"
-      animate={isInView ? "visible" : "hidden"}
-      variants={variant || defaultVariants}
-      transition={{
-        delay: 0.04 + delay,
-        duration,
-        ease: "easeOut",
-      }}
-      className={className}
+    <div
+      className={cn("blur-fade", inView && "blur-fade-in-view", className)}
+      data-axis={axis}
+      style={{
+        "--blur-fade-delay": `${delay}s`,
+        "--blur-fade-duration": `${duration}s`,
+        "--blur-fade-offset": translatedOffset,
+        "--blur-fade-blur": blur,
+        "--blur-fade-in-view-margin": inViewMargin,
+        willChange: "transform, opacity, filter",
+        ...style,
+      } as CSSProperties}
       {...props}
     >
       {children}
-    </motion.div>
+    </div>
   );
 }

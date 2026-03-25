@@ -1,0 +1,40 @@
+---
+import BlurFade from "~/components/effects/blur-fade";
+import BlurFadeText from "~/components/effects/blur-fade-text";
+import BaseLayout from "~/layouts/BaseLayout.astro";
+import { getBlogPosts } from "~/lib/blog";
+import config from "~/config";
+
+const posts = getBlogPosts().sort((a, b) => (
+  new Date(a.metadata.publishedAt) > new Date(b.metadata.publishedAt) ? -1 : 1
+));
+---
+
+<BaseLayout
+  title="Blog"
+  description="A collection of insightful tutorials, guides, and various topics of interest by Jake McQuade."
+>
+  <main class="relative min-h-[100dvh] items-center justify-center bg-transparent px-8 pt-8">
+    <BlurFadeText
+      client:load
+      className="my-4 mt-2.5 text-4xl font-bold text-black dark:text-white"
+      text="Blog"
+      yOffset={6}
+      delay={config.initialAnimationDelay * 0.8}
+      duration={0.32}
+      characterDelay={0.03}
+    />
+    <div class="flex flex-col space-y-4">
+      {posts.map((post, i) => (
+        <BlurFade client:load delay={0.24 + i * 0.06} duration={0.32} offset={5}>
+          <a class="hover:no-underline" href={`/blog/${post.slug}`}>
+            <article class="group rounded bg-transparent p-4 shadow">
+              <h2 class="text-2xl font-semibold">{post.metadata.title}</h2>
+              <p class="text-gray-700 dark:text-gray-300">{post.metadata.summary}</p>
+            </article>
+          </a>
+        </BlurFade>
+      ))}
+    </div>
+  </main>
+</BaseLayout>

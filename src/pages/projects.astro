@@ -1,0 +1,9 @@
+---
+import BaseLayout from "~/layouts/BaseLayout.astro";
+import ProjectsPage from "~/components/pages/projects-page";
+import config from "~/config";
+---
+
+<BaseLayout title="Projects" description={`A collection of projects by ${config.name}.`} keywords={config.meta.keywords}>
+  <ProjectsPage client:load />
+</BaseLayout>
