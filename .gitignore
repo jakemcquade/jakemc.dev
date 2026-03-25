@@ -46,6 +46,10 @@ yarn-error.log*
 # idea files
 .idea
 
-# Vinext
+# Astro
+.astro
 .wrangler
-worker
+
+.dev.vars*
+!.dev.vars.example
+!.env.example
