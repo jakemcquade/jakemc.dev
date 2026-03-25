@@ -5,9 +5,8 @@ import remarkParse from "remark-parse";
 import { unified } from "unified";
 import matter from "gray-matter";
 import { createHighlighter } from "shiki";
-import { createJavaScriptRegexEngine } from "shiki/engine/javascript";
+// import { createJavaScriptRegexEngine } from "shiki";
 
-// Bundle posts at build time (Workers-safe, no fs).
 const rawPosts = import.meta.glob("../../posts/*.{md,mdx}", {
   eager: true,
   query: "?raw",
@@ -60,12 +59,12 @@ export async function getPost(slug: string) {
           light: "min-light",
           dark: "min-dark",
         },
-        // IMPORTANT: avoid Shiki's default WASM Oniguruma engine on Cloudflare Workers
+
         getHighlighter: (options) => {
           if (!highlighterPromise) {
             highlighterPromise = createHighlighter({
               ...options,
-              engine: createJavaScriptRegexEngine({ forgiving: true }),
+              // engine: createJavaScriptRegexEngine({ forgiving: true }),
             });
           }
 
