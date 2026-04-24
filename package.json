@@ -5,6 +5,7 @@
   "license": "AGPL-3.0-only",
   "type": "module",
   "private": true,
+  "packageManager": "yarn@4.9.1",
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
@@ -43,7 +44,7 @@
     "@types/react-dom": "19.2.3",
     "postcss": "^8.5.8",
     "tailwindcss": "^4.2.2",
-    "typescript": "^6.0.2",
+    "typescript": "^5.9.3",
     "wrangler": "^4.77.0"
   }
 }
