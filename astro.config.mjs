@@ -10,6 +10,7 @@ export default defineConfig({
   output: "server",
   adapter: cloudflare({ imageService: "compile", prerenderEnvironment: "node" }),
   compressHTML: true,
+  build: { inlineStylesheets: "always" },
   image: {
     domains: ["disping.xyz", "raw.githubusercontent.com"],
   },
