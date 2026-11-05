@@ -30,7 +30,7 @@ export default function HomePage() {
         <BlurFadeText className="my-2.5 text-xl font-bold text-black dark:text-white" delay={contactTitleDelay} duration={0.32} yOffset={5} text="Contact" />
         <BlurFade className="mb-2.5" delay={contactBodyDelay} duration={0.32} offset={4}>
           <span className="text-base font-normal text-black dark:text-white">
-            Interested in collaborating, hiring, or just having a chat? Feel free to reach out at <a href="mailto:hello@jakemc.dev">hello@jakemc.dev</a> or connect with me on any of my socials.
+            Interested in collaborating, hiring, or just having a chat? Feel free to reach out at <a href="mailto:hello@jakemc.dev" className="underline underline-offset-2">hello@jakemc.dev</a> or connect with me on any of my socials.
           </span>
         </BlurFade>
       </div>
@@ -48,7 +48,7 @@ export default function HomePage() {
                 <div className="ml-4 flex-grow flex flex-col justify-center">
                   <div className="flex flex-col">
                     <div className="flex items-center justify-between gap-x-2 text-base">
-                      <h3 className="inline-flex items-center justify-center gap-1 text-lg font-semibold leading-none sm:text-sm text-black dark:text-white">
+                      <h2 className="inline-flex items-center justify-center gap-1 text-lg font-semibold leading-none sm:text-sm text-black dark:text-white">
                         {project.name}
                         <span className="inline-flex gap-1">
                           {project.links.map((social) => (
@@ -57,7 +57,7 @@ export default function HomePage() {
                             </a>
                           ))}
                         </span>
-                      </h3>
+                      </h2>
                     </div>
                     <div className="text-base font-normal text-black dark:text-white">{project.description}</div>
                   </div>
