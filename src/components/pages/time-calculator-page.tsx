@@ -115,7 +115,7 @@ export default function TimeCalculatorPage() {
                   selected={endDate}
                   onSelect={setEndDate}
                   disabled={(date) => date < new Date() || date < new Date("1900-01-01")}
-                  initialFocus
+                  autoFocus
                 />
               </div>
             </PopoverContent>

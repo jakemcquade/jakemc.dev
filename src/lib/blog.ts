@@ -1,17 +1,26 @@
 import rehypePrettyCode from "rehype-pretty-code";
 import rehypeStringify from "rehype-stringify";
+import { parse as parseYaml } from "yaml";
+import { createHighlighter } from "shiki";
 import remarkRehype from "remark-rehype";
 import remarkParse from "remark-parse";
 import { unified } from "unified";
-import matter from "gray-matter";
-import { createHighlighter } from "shiki";
-// import { createJavaScriptRegexEngine } from "shiki";
 
 const rawPosts = import.meta.glob("../../posts/*.{md,mdx}", {
   eager: true,
   query: "?raw",
   import: "default",
 }) as Record<string, string>;
+
+function matter(raw: string) {
+  const match = raw.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n?/);
+  if (!match) return { data: {}, content: raw };
+
+  return {
+    data: (parseYaml(match[1]!) ?? {}) as Record<string, any>,
+    content: raw.slice(match[0].length)
+  };
+}
 
 function findRawBySlug(slug: string): string | null {
   for (const [filePath, raw] of Object.entries(rawPosts)) {
@@ -62,10 +71,7 @@ export async function getPost(slug: string) {
 
         getHighlighter: (options) => {
           if (!highlighterPromise) {
-            highlighterPromise = createHighlighter({
-              ...options,
-              // engine: createJavaScriptRegexEngine({ forgiving: true }),
-            });
+            highlighterPromise = createHighlighter(options);
           }
 
           return highlighterPromise;

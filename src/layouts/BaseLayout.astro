@@ -47,6 +47,10 @@ const socialClasses = "h-5 w-5 text-gray-700 hover:text-black dark:text-gray-300
     <script is:inline>
       (() => {
         const root = document.documentElement;
+        const style = document.createElement("style");
+
+        style.textContent = "*,*::before,*::after{transition:none!important}";
+        document.head.appendChild(style);
 
         try {
           const storedTheme = localStorage.getItem("theme");
@@ -62,7 +66,19 @@ const socialClasses = "h-5 w-5 text-gray-700 hover:text-black dark:text-gray-300
         } catch {
           root.setAttribute("data-theme", "dark");
           root.style.colorScheme = "dark";
+        } finally {
+          requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+              style.remove();
+            });
+          });
         }
+
+        document.addEventListener("astro:before-swap", (event) => {
+          const theme = document.documentElement.getAttribute("data-theme") || "dark";
+          event.newDocument.documentElement.setAttribute("data-theme", theme);
+          event.newDocument.documentElement.style.colorScheme = theme;
+        });
       })();
     </script>
   </head>
