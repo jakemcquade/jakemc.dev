@@ -7,15 +7,15 @@ import BlurFadeText from "~/components/effects/blur-fade-text";
 import config from "~/config";
 
 export default function HomePage() {
-  const introDelay = 0.08;
-  const lineStartDelay = 0.2;
-  const lineStepDelay = 0.07;
-  const contactTitleDelay = 0.46;
-  const contactBodyDelay = 0.58;
-  const projectsTitleDelay = 0.74;
-  const projectsBodyDelay = 0.86;
-  const projectsCardStartDelay = 1.0;
-  const projectsCardStepDelay = 0.07;
+  const introDelay = 0.05;
+  const lineStartDelay = 0.1;
+  const lineStepDelay = 0.05;
+  const contactTitleDelay = 0.25;
+  const contactBodyDelay = 0.3;
+  const projectsTitleDelay = 0.38;
+  const projectsBodyDelay = 0.43;
+  const projectsCardStartDelay = 0.5;
+  const projectsCardStepDelay = 0.04;
 
   return (
     <main className="relative min-h-[70vh] flex flex-col items-start justify-start bg-transparent px-8 pt-8">

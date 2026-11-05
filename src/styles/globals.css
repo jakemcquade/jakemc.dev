@@ -223,7 +223,9 @@
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .home-hero-title {
+    .home-hero-title,
+    .blur-fade,
+    .blur-fade-text {
       animation: none;
       transform: none;
     }

@@ -185,7 +185,7 @@ function PopoverContent({ className, children, side = "bottom", align = "center"
 	const transform = sideTransforms[side];
 
 	return (
-		<MotionConfig transition={{ type: "tween", ease: "easeInOut", duration: 0.15 }}>
+		<MotionConfig reducedMotion="user" transition={{ type: "tween", ease: "easeInOut", duration: 0.15 }}>
 			<AnimatePresence initial={false}>
 				{open && (
 					<motion.div

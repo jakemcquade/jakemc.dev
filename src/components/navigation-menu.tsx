@@ -188,7 +188,7 @@ const NavigationMenuContent = React.forwardRef<HTMLDivElement, React.ComponentPr
   const { open, openMenu, scheduleClose, cancelScheduledClose, triggerId, contentId } = useNavigationMenuItemContext();
 
   return (
-    <MotionConfig transition={{ type: "spring", stiffness: 380, damping: 30, mass: 0.5 }}>
+    <MotionConfig reducedMotion="user" transition={{ type: "spring", stiffness: 380, damping: 30, mass: 0.5 }}>
       <AnimatePresence>
         {open && (
           <motion.div

@@ -75,7 +75,7 @@ export default function Navbar({ logo = "/logo.webp" }) {
 	}
 
   return (
-    <nav id={"navbar"} className={"sticky top-[1rem] z-[9] flex list-none flex-col rounded-xl bg-transparent p-[5px] py-4 transition-all delay-150 ease-in-out"}>
+    <nav id={"navbar"} className={"sticky top-[1rem] z-[9] flex list-none flex-col rounded-xl bg-transparent p-[5px] py-4 transition-all ease-in-out"}>
       <div className="mx-auto w-full max-w-7xl px-2 sm:px-6 lg:px-8">
         <div className="relative flex h-16 items-center justify-between">
           {/* Branding */}
@@ -104,12 +104,12 @@ export default function Navbar({ logo = "/logo.webp" }) {
       </div>
 
       {/* Items (Mobile) */}
-      <MotionConfig transition={{ type: "tween", ease: "easeInOut", duration: 0.3 }}>
+      <MotionConfig reducedMotion="user" transition={{ type: "tween", ease: "easeOut", duration: 0.25 }}>
         <AnimatePresence initial={false}>
           {opened && (
             <>
               {/* Backdrop */}
-              <motion.div initial={{ opacity: 0 }} animate={{ opacity: 0.5 }} exit={{ opacity: 0 }} className={"fixed inset-0 z-8 bg-black sm:hidden"} onClick={() => setOpened(false)} />
+              <motion.div initial={{ opacity: 0 }} animate={{ opacity: 0.5 }} exit={{ opacity: 0, transition: { duration: 0.2, ease: "easeIn" } }} className={"fixed inset-0 z-8 bg-black sm:hidden"} onClick={() => setOpened(false)} />
 
               {/* Sidebar */}
               <motion.div
@@ -117,7 +117,7 @@ export default function Navbar({ logo = "/logo.webp" }) {
                 id="mobile-menu"
                 initial={{ x: "100%" }}
                 animate={{ x: 0 }}
-                exit={{ x: "100%" }}
+                exit={{ x: "100%", transition: { duration: 0.2, ease: "easeIn" } }}
                 variants={{
                   closed: { x: "100%" },
                   open: { x: 0 },
