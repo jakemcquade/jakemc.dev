@@ -19,10 +19,6 @@ export default {
       href: "https://www.youtube.com/@jakemcquade",
     },
     {
-      label: "Instagram",
-      href: "https://www.instagram.com/jakee.mcquade/",
-    },
-    {
       label: "Discord",
       href: "https://discord.com/users/1292290091108274219",
     },
