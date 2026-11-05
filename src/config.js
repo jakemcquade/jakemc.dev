@@ -63,7 +63,7 @@ export default {
     {
       company: "DiscoTechs",
       description: "A high school robotics team that competes in the FIRST Robotics Competition (FRC). Programmer through 2025, then Programming Specialist. Helped write efficient and effective code robots for regional competitions.",
-      image: "/dt_1099.png",
+      image: "/dt_1099.webp",
       period: "2023 - Present",
       role: "Programmer",
       links: [
@@ -78,7 +78,7 @@ export default {
     {
       name: "Disping",
       description: "Notify your community on YouTube, Twitch, Trovo, Bluesky, Reddit & more - fast and easy with Disping!",
-      image: "/projects/disping.png",
+      image: "/projects/disping.webp",
       links: [
         {
           label: "Website",
@@ -89,7 +89,7 @@ export default {
     {
       name: "FastAutoClicker",
       description: "An open sourced, lightweight, and fast auto clicker designed with a sleek modern interface.",
-      image: "/projects/fastautoclicker.png",
+      image: "/projects/fastautoclicker.webp",
       links: [
         {
           label: "GitHub",

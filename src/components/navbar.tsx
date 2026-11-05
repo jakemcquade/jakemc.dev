@@ -9,7 +9,7 @@ import { Button } from "./button";
 import { cn } from "../lib/utils";
 import config from "~/config";
 
-export default function Navbar({ logo = "/logo.png" }) {
+export default function Navbar({ logo = "/logo.webp" }) {
   const [opened, setOpened] = useState(false);
   const [theme, setTheme] = useState<"dark" | "light">("dark");
 
